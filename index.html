@@ -89,43 +89,95 @@
     transform: translateY(-100%);
   }
 
-  /* ---------- 選択画面（部屋） ---------- */
+/* ---------- 選択画面（部屋） ---------- */
   .main-screen {
     width: 100%;
     height: 100%;
     background: #b75252;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;
   }
 
-  .main-screen h1 {
-    color: #fff;
-    margin-bottom: 24px;
+
+  /* 部屋の画像エリア */
+  .scene {
+    width: 100%;
+    max-width: 880px;
+    margin: 16px auto 0;
+    line-height: 0;
   }
 
-  .buttons {
-    display: flex;
-    gap: 40px;
+  .scene .gelatinRoom {
+    min-width: 300px;
+    margin: 0 auto;
+    display: block;
   }
 
-  .buttons button {
-    padding: 10px 24px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  @media screen and (max-width:880px) {
+    .scene .gelatinRoom {
+      width: 90%;
+    }
+  }
+  @media screen and (min-width:880px) and (max-width:980px) {
+    .scene .gelatinRoom {
+      width: 95%;
+    }
+  }
+
+  .scene img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* メッセージボックス */
+  .message-box {
+    position: relative;
+    width: 90%;
+    max-width: 880px;
+    margin: 16px auto;
     background: #fff;
-    color: #b75252;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 160px;
+    color: #7a3b3b;
+    font-size: 18px;
+    line-height: 1.8;
+    white-space: pre-wrap;
   }
-</style>
+
+  #messageText {
+    position: absolute;
+    top: 0;
+    padding: 1em;
+  }
+
+  /* SHOP・ORDERボタン */
+  .menu {
+    width: 90%;
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    /* margin-top: auto; */
+    /* padding: 32px 0; */
+  }
+
+  .menu button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 4px;
+    cursor: pointer;
+  }</style>
 </head>
 <body>
 
   <!-- オープニング -->
   <div id="opening" class="opening">
-    <img src="img/vtb_logo.png" alt="ロゴ">
+    <img src="cmnImg/vtb_logo.png" alt="ロゴ">
     <svg xmlns="http://www.w3.org/2000/svg"
 
     viewBox="0 0 424 58"
@@ -153,14 +205,39 @@
 
   <!-- 選択画面（部屋） -->
   <div class="main-screen">
-    <h1>お部屋</h1>
-    <div class="buttons">
+
+    <!-- 部屋の画像 -->
+    <div class="scene">
+      <img class="gelatinRoom" src="cmnImg/gelatinRoom.svg" alt="お部屋">
+    </div>
+
+    <!-- メッセージボックス -->
+    <div class="message-box">
+      <p id="messageText"></p>
+    </div>
+
+    <!-- SHOP・ORDERボタン -->
+    <div class="menu">
       <button>SHOP</button>
       <button>ORDER</button>
     </div>
+
   </div>
 
   <script>
+    // 1文字ずつコマ送りで表示する関数
+    function typeText(el, text, speed = 60) {
+      let i = 0;
+      el.textContent = '';
+      function step() {
+        if (i < text.length) {
+          el.textContent += text[i];
+          i++;
+          setTimeout(step, speed);
+        }
+      }
+      step();
+    }
     window.addEventListener('load', () => {
       const opening = document.getElementById('opening');
 
@@ -172,6 +249,10 @@
       // スライド完了後、非表示にして裏に隠す
       opening.addEventListener('transitionend', () => {
         opening.style.display = 'none';
+
+      // オープニングが終わったらメッセージをコマ送り表示
+        const message = document.getElementById('messageText');
+        typeText(message, '「いらっしゃいませ〜！\n来てくれてありがとう！」', 60);
       });
     });
   </script>
