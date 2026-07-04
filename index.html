@@ -528,9 +528,10 @@
     </div>
 
     <!-- メッセージボックス -->
-    <div class="message-box">
-      <p id="messageText"></p>
-    </div>
+  <div class="message-box">
+    <p id="messageText"></p>
+    <div id="choiceList" class="choice-list"></div>
+  </div>
 
     <!-- SHOP・ORDERボタン -->
     <div class="menu">
@@ -554,6 +555,62 @@
       }
       step();
     }
+    // コマ送りのタイマーIDを保持する変数
+    let typeTimer = null;
+
+    function typeText(el, text, speed = 60) {
+      // 前のコマ送りを止める
+      if (typeTimer) {
+        clearTimeout(typeTimer);
+        typeTimer = null;
+      }
+
+      let i = 0;
+      el.textContent = '';
+      function step() {
+        if (i < text.length) {
+          el.textContent += text[i];
+          i++;
+          typeTimer = setTimeout(step, speed); // IDを保持
+        }
+      }
+      step();
+    }
+    // SHOP・ORDER選択の関数
+    const shopData = {
+    message: '「現在は3つのショップから販売を行なっているよ！」',
+    choices: [
+      { label: 'BOOTH',     url: 'https://vtb001.booth.pm/' },
+      { label: 'PIXTA',     url: 'https://creator.pixta.jp/@eteoil' },
+      { label: 'LINEスタンプ', url: 'https://store.line.me/stickershop/author/2410058/ja' },
+    ]
+  };
+
+  const orderData = {
+    message: '「現在は3つのルートから依頼を受けているよ！」',
+    choices: [
+      { label: 'Skeb',          url: 'https://skeb.jp/@eteoil' },
+      { label: 'つなぐ',         url: 'https://tsunagu.cloud/users/eteoil' },
+      { label: 'Pixivリクエスト', url: 'https://www.pixiv.net/users/23216671/request' },
+    ]
+  };
+
+  function showChoices(data) {
+    const msgText   = document.getElementById('messageText');
+    const choiceList = document.getElementById('choiceList');
+
+    typeText(msgText, data.message, 60);
+
+    choiceList.innerHTML = '';
+    data.choices.forEach(item => {
+      const el = document.createElement('span');
+      el.className = 'choice-item';
+      el.textContent = item.label;
+      el.addEventListener('click', () => window.open(item.url, '_blank'));
+      choiceList.appendChild(el);
+    });
+  }
+
     window.addEventListener('load', () => {
       const opening = document.getElementById('opening');
 
@@ -570,7 +627,19 @@
         const message = document.getElementById('messageText');
         typeText(message, '「いらっしゃいませ〜！\n来てくれてありがとう！」', 60);
       });
+      // SHOP・ORDER選択
+  document.querySelectorAll('.menu button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.menu button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (btn.textContent.trim() === 'SHOP') {
+          showChoices(shopData);
+        } else {
+          showChoices(orderData);
+        }
+      });
     });
+  });
   </script>
 
 </body>
