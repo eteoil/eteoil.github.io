@@ -1,0 +1,434 @@
+:root {
+  color-scheme: light;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:
+    M PLUS Rounded\1c,
+    sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  font-family: sans-serif;
+  background: #fff;
+}
+/* ---------- 選択画面（部屋） ---------- */
+.main-screen {
+  width: 100%;
+  height: 100%;
+  background: #b75252;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  scrollbar-width: thin;
+  scrollbar-color: #b75252 transparent;
+}
+.main-screen::-webkit-scrollbar {
+  width: 6px;
+}
+
+.main-screen::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main-screen::-webkit-scrollbar-thumb {
+  background: #b75252;
+  border-radius: 10px;
+}
+
+.main-screen::-webkit-scrollbar-thumb:hover {
+  background: #c61626;
+}
+
+/* 部屋の画像エリア */
+.scene {
+  position: relative;
+  width: 100%;
+  max-width: 880px;
+  margin: 16px auto 0;
+  line-height: 0;
+}
+
+.scene .gelatinRoom {
+  min-width: 300px;
+  margin: 0 auto;
+  display: block;
+}
+.scene .mat {
+  position: absolute;
+  top: 76%;
+  left: 57%;
+  transform: translateX(-50%);
+  width: 60%;
+  max-width: 536px;
+}
+.scene .calendar {
+  position: absolute;
+  top: 28%;
+  left: 38.5%;
+  transform: translateX(-50%);
+  width: 15%;
+  max-width: 120px;
+}
+.scene .bookshelf {
+  position: absolute;
+  top: 18.2%;
+  left: 65.35%;
+  transform: translateX(-50%);
+  width: 30%;
+  max-width: 266px;
+}
+.scene .desk {
+  position: absolute;
+  top: 82%;
+  left: 46%;
+  transform: translate(-50%, -50%);
+  width: 15%;
+  max-width: 152px;
+}
+.scene .book {
+  position: absolute;
+  top: 78%;
+  left: 46%;
+  transform: translate(-50%, -50%);
+  width: 10%;
+  max-width: 104px;
+}
+#tem {
+  position: absolute;
+  bottom: 1%;
+  left: 8%;
+  width: 20%;
+  max-width: 160px;
+}
+.temColor0 {
+  fill: #ffffff;
+}
+.temColor1 {
+  display: none;
+}
+.temColor2 {
+  display: inline;
+}
+.temColor3 {
+  display: inline;
+  fill: #ffffff;
+}
+#gumiChan {
+  position: absolute;
+  bottom: -16%;
+  right: 8%;
+  width: 30%;
+  max-width: 250px;
+  max-height: 445px;
+}
+.gumiChanColor0 {
+  fill: #cd8c00;
+}
+.gumiChanColor1 {
+  fill: #f5f0fa;
+}
+.gumiChanColor2 {
+  fill: #6e82be;
+}
+.gumiChanColor3 {
+  fill: #6e8200;
+}
+.gumiChanColor4 {
+  fill: #516935;
+}
+.gumiChanColor5 {
+  fill: #586d32;
+}
+.gumiChanColor6 {
+  fill: #e5556d;
+}
+.gumiChanColor7 {
+  fill: #dc87b7;
+}
+.gumiChanColor8 {
+  fill: #967a36;
+}
+.gumiChanColor9 {
+  fill: #6e3200;
+}
+.gumiChanColor10 {
+  fill: #e6b45a;
+}
+.gumiChanColor11 {
+  fill: #823200;
+}
+.gumiChanColor12 {
+  fill: #fff;
+}
+.gumiChanColor13 {
+  fill: #e63c78;
+}
+.gumiChanColor14 {
+  fill: #d13240;
+}
+
+@media screen and (min-width: 400px) {
+  #gumiChan {
+    bottom: -13%;
+  }
+}
+@media screen and (min-width: 600px) {
+  #gumiChan {
+    bottom: -11%;
+  }
+}
+@media screen and (min-width: 740px) {
+  #gumiChan {
+    bottom: -10%;
+  }
+}
+@media screen and (min-width: 780px) {
+  #gumiChan {
+    bottom: -8%;
+  }
+}
+@media screen and (min-width: 800px) {
+  #gumiChan {
+    bottom: -8%;
+  }
+}
+@media screen and (min-width: 820px) {
+  #gumiChan {
+    bottom: -5%;
+  }
+}
+@media screen and (min-width: 880px) {
+  .scene .gelatinRoom {
+    width: 95%;
+  }
+  .scene .calendar {
+    top: 28%;
+    left: 38.5%;
+  }
+  .scene .bookshelf {
+    top: 20.8%;
+    left: 66.8%;
+  }
+  .scene .desk {
+    top: 81%;
+    left: 47%;
+  }
+  .scene .book {
+    top: 77%;
+    left: 47%;
+  }
+  #gumiChan {
+    bottom: -4%;
+  }
+}
+@media screen and (max-width: 880px) {
+  .scene .gelatinRoom {
+    width: 90%;
+  }
+  .scene .calendar {
+    top: 28%;
+    left: 38.5%;
+  }
+}
+
+.scene img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* メッセージボックス */
+.message-box {
+  position: relative;
+  width: 90%;
+  max-width: 834px;
+  margin: 16px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  min-height: 160px;
+  max-height: 280px;
+  overflow-y: auto;
+  color: #7a3b3b;
+  font-size: 1.1em;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  overflow: visible;
+}
+
+#messageText {
+  position: absolute;
+  top: 0;
+  padding: 1em;
+  height: auto;
+}
+@media screen and (min-width: 440px) {
+  .message-box {
+    font-size: 1.3em;
+    line-height: 1.3;
+  }
+}
+@media screen and (min-width: 520px) {
+  .message-box {
+    font-size: 1.4em;
+  }
+}
+@media screen and (min-width: 700px) {
+  .message-box {
+    font-size: 1.5em;
+  }
+}
+@media screen and (min-width: 880px) {
+  .message-box {
+    font-size: 1.6em;
+    line-height: 1.4;
+  }
+}
+@media screen and (min-width: 880px) and (max-width: 980px) {
+  .message-box {
+    width: 94%;
+  }
+}
+/* SHOP・ORDERボタン */
+.menu {
+  width: 90%;
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  /* margin-top: auto; */
+  /* padding: 32px 0; */
+}
+
+.menu button {
+  background: none;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 20px;
+  letter-spacing: 4px;
+  cursor: pointer;
+  padding: 8px 24px;
+  border-radius: 4px;
+}
+
+.menu button:hover {
+  background: #fff;
+  color: #b75252;
+}
+/* テキスト入力 */
+.translate-input {
+  position: absolute;
+  top: 4em;
+  width: 87%;
+  display: block;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: 2px solid #c98a8a;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #7a3b3b;
+  outline: none;
+  background: #fff;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.translate-input::placeholder {
+  color: #c4a0a0;
+}
+
+.translate-input:focus {
+  border-color: #b75252;
+}
+@media screen and (min-width: 440px) {
+  .translate-input {
+    width: 91%;
+  }
+}
+@media screen and (min-width: 600px) {
+  .translate-input {
+    width: 92%;
+  }
+}
+@media screen and (min-width: 748px) {
+  .translate-input {
+    width: 93%;
+  }
+}
+@media screen and (min-width: 880px) {
+  .translate-input {
+    width: 95%;
+  }
+}
+/* ボタン群 */
+.translate-buttons {
+  position: absolute;
+  top: 6em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.translate-btn {
+  background: none;
+  border: 2px solid #b75252;
+  border-radius: 6px;
+  color: #b75252;
+  font-size: 1rem;
+  padding: 6px 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.translate-btn:hover {
+  background: #c61626;
+  color: #fff;
+}
+
+@media screen and (max-width: 800px) {
+  .message-box {
+    overflow-y: auto;
+  }
+  .translate-buttons {
+    flex-direction: column;
+    top: 6em;
+  }
+  .translate-btn:last-child {
+    margin-bottom: 12px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .translate-buttons {
+    top: 6.4em;
+  }
+}
+@media screen and (max-width: 540px) {
+  .translate-input {
+    height: 4em;
+  }
+  .translate-buttons {
+    top: 6.1em;
+  }
+}
+@media screen and (max-width: 520px) {
+  .translate-buttons {
+    top: 6.6em;
+  }
+}
+@media screen and (max-width: 440px) {
+  .translate-buttons {
+    top: 7.8em;
+  }
+}

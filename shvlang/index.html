@@ -4,118 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
-<link rel="stylesheet" href="cmn/css/default.css">
+<link rel="stylesheet" href="../cmn/css/default.css">
 <title>Visual Toy-Box.</title>
 <!-- Google Fonts: M PLUS Rounded 1c -->
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
-  /* ---------- オープニング画面 ---------- */
-  .opening {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    transition: transform 1s ease-in;
-    z-index: 10;
-  }
 
-  .opening img {
-    width: 200px;
-    height: auto;
-    opacity: 0;
-    animation: fadeInLogo 0.8s ease-in forwards;
-    animation-delay: 0.3s;
-  }
-
-  @keyframes fadeInLogo {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-  .opening svg {
-    margin-top: 10px;
-    width: 70%;
-    max-width: 640px;
-    min-width: 300px;
-    height: auto;
-  }
-  .opening .ttlColor0 {
-    fill: #543032;
-    opacity: 0;
-    animation: fadeInLogo 0.8s ease-in forwards;
-    animation-delay: 0.3s;
-  }
-
-  .opening p {
-    color: #543032;
-    font-size: 1.2rem;
-    opacity: 0;
-    animation: fadeInLogo 0.8s ease-in forwards;
-    animation-delay: 0.3s;
-  }
-
-  @media screen and (min-width:912px) {
-    .opening p {
-      margin-top: 4px;
-    }
-  }
-
-  /* スライドアップ用のクラス（JSで付与） */
-  .opening.slide-up {
-    transform: translateY(-100%);
-  }
 
 
 </style>
 </head>
 <body>
 
-  <!-- オープニング -->
-  <div id="opening" class="opening">
-    <img src="cmn/img/vtb_logo.png" alt="ロゴ">
-    <svg xmlns="http://www.w3.org/2000/svg"
-
-    viewBox="0 0 424 58"
-    role="presentation"
-  >
-    <g id="title">
-			<path d="M28.3,47.7H18.1L0,2.7H10.4L26.8,44.3,42.4,4.8a7.8,7.8,0,0,0,.4-2.1h3.5Z"  class="ttlColor0"/>
-			<path d="M58.3,5a5.1,5.1,0,0,1-5,5,5,5,0,0,1-4.9-5,5,5,0,1,1,9.9,0ZM49,47.7v-33h8.7v33Z"  class="ttlColor0"/>
-			<path d="M86.3,21.1a15.3,15.3,0,0,0-10-4.5c-4.2,0-7,1.8-7,4.6s1.7,3.9,7.3,5.7c10.2,3.3,13.2,6,13.2,11.6s-4.9,9.6-15.1,9.6a27.7,27.7,0,0,1-14.4-3.6l1.8-3.7a18.2,18.2,0,0,0,11.7,4.7c5,0,7.9-1.8,7.9-4.8s-2.3-4.5-9.7-6.8S61.7,28.7,61.7,23.8s5-9.6,13.8-9.6a23.5,23.5,0,0,1,12.7,3.3Z"  class="ttlColor0"/>
-			<path d="M114.7,47.7V43.6c-2.3,3.2-5.3,4.5-10.1,4.5C95.2,48.1,91,44.2,91,35.6V14.7h8.7V35.2a19.9,19.9,0,0,0,.7,6.2,6.3,6.3,0,0,0,6.3,4.4c4.6,0,8-4,8-9.3V14.7h8.7v33Z"  class="ttlColor0"/>
-			<path d="M150.2,43.7a17.5,17.5,0,0,1-12.1,4.4c-7.4,0-11.7-3.5-11.7-9.5s4.8-9.9,15.4-11.2c3.7-.5,6.9-1.1,8.3-1.4a13,13,0,0,0-.6-4.6,7.1,7.1,0,0,0-7.2-5.3c-3.8,0-7.9,2.2-11.4,6.1l-2.2-4.5a31,31,0,0,1,14.5-3.8c6.3,0,10.6,1.4,13,4.2s2.6,4.7,2.6,9.6v20h-8.6Zm-1.3-15.1-2.2.3c-6.1,1.1-6.1,1.1-7.6,1.8a6.7,6.7,0,0,0-3.8,6.5c0,4.1,2.8,6.6,7.1,6.6a10.8,10.8,0,0,0,7.8-2.8V28.3Z"  class="ttlColor0"/>
-			<path d="M161.8,47.7V.3h8.7V47.7Z"  class="ttlColor0"/>
-			<path d="M210.1,5.1V47.7h-9.6V5.1H184.4V2.7h41.7V5.1Z"  class="ttlColor0"/>
-			<path d="M250.2,30.8c0,11-6.7,17.5-18,17.5s-18.4-6.6-18.4-17.6,7.1-16.8,18.5-16.8S250.2,20.2,250.2,30.8Zm-27.5-.1c0,9,3.8,15.1,9.5,15.1s9.1-5.9,9.1-15.1-3.6-14.4-9-14.4S222.7,22.3,222.7,30.7Z"  class="ttlColor0"/>
-			<path d="M249.9,14.7h9.7L269.7,39l9.9-22.1a4.7,4.7,0,0,0,.5-2.2h3.6L267.4,49.9c-2.6,5.4-6.9,8.4-12.5,8.4l-3-.2-.6-3.3a21.2,21.2,0,0,0,3.9.2c3.7,0,5.4-.6,7.2-2.6a20.2,20.2,0,0,0,2.1-3l.3-.7Z"  class="ttlColor0"/>
-			<path d="M284.3,32.9v-4h14.6v4Z"  class="ttlColor0"/>
-			<path d="M321.4,2.7a32,32,0,0,1,9.9,1.2c5.1,1.7,7.8,5.1,7.8,9.7,0,6.3-3.8,9.7-11.7,10.4,9.6.9,14.4,4.9,14.4,11.8s-3.3,9.3-9.9,10.9a52.5,52.5,0,0,1-10.9,1H304.6V2.7ZM319.9,23c6.5,0,9.6-2.8,9.6-9,0-3.7-1.3-6.3-3.8-7.7a11.7,11.7,0,0,0-6-1.2h-6.1V23Zm.3,22.3c8.1,0,11.9-3.1,11.9-9.6s-4-10.3-12-10.3h-6.5V45.3Z"  class="ttlColor0"/>
-			<path d="M380.3,30.8c0,11-6.7,17.5-18,17.5s-18.4-6.6-18.4-17.6,7-16.8,18.4-16.8S380.3,20.2,380.3,30.8Zm-27.5-.1c0,9,3.8,15.1,9.5,15.1s9.1-5.9,9.1-15.1-3.6-14.4-9.1-14.4S352.8,22.3,352.8,30.7Z"  class="ttlColor0"/>
-			<path d="M396.9,28l14.9,19.7H400.6l-9.2-13-9.7,11.4a2.1,2.1,0,0,0-.8,1.6h-4.2l13.1-15.3L377.3,14.7h10.1l7.9,11.2,8-9.3a3.6,3.6,0,0,0,.9-1.9h4.3Z"  class="ttlColor0"/>
-			<path d="M424.4,43.3a5,5,0,1,1-5-5.1A5.2,5.2,0,0,1,424.4,43.3Z"  class="ttlColor0"/>
-    </g>
-  </svg>
-    <p>Presented by eteoil</p>
-  </div>
 
   <!-- 選択画面（部屋） -->
   <div class="main-screen">
 
     <!-- 部屋の画像 -->
     <div class="scene">
-      <img class="gelatinRoom" src="cmn/img/gelatinRoom.svg" alt="お部屋">
-      <img class="calendar" src="cmn/img/calendar.svg" alt="カレンダー">
-      <img class="mat" src="cmn/img/mat.svg" alt="絨毯">
-      <img class="bookshelf" src="cmn/img/bookshelf.svg" alt="本棚">
-      <img class="desk" src="cmn/img/desk.svg" alt="机">
-      <img class="book" src="cmn/img/book.svg" alt="本">
+      <img class="gelatinRoom" src="../cmn/img/gelatinRoom.svg" alt="お部屋">
+      <img class="calendar" src="../cmn/img/calendar.svg" alt="カレンダー">
+      <img class="mat" src="../cmn/img/mat.svg" alt="絨毯">
+      <img class="bookshelf" src="../cmn/img/bookshelf.svg" alt="本棚">
+      <img class="desk" src="../cmn/img/desk.svg" alt="机">
+      <img class="book" src="../cmn/img/book.svg" alt="本">
       <svg version="1.1" id="tem" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
       xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 50 50"
       style="enable-background:new 0 0 50 50;" xml:space="preserve">
@@ -527,50 +441,281 @@
       </svg>
     </div>
 
-    <!-- メッセージボックス -->
-    <div class="message-box">
-      <p id="messageText"></p>
-    </div>
+  <!-- メッセージボックス -->
+  <div class="message-box">
+    <p id="messageText"></p>
 
-    <!-- SHOP・ORDERボタン -->
-    <div class="menu">
-      <button>SHOP</button>
-      <button>ORDER</button>
+    <textarea
+      id="translateInput"
+      class="translate-input"
+      placeholder="翻訳したいひらがな(もしくはシュバル語)を入力してね！"
+      rows="2"
+    ></textarea>
+
+    <div class="translate-buttons">
+      <button class="translate-btn">シュバル語へ翻訳お願い☆</button>
+      <button class="translate-btn">ボカロ語へ翻訳お願い☆</button>
+      <button class="translate-btn">日本語へ翻訳お願い☆</button>
     </div>
+  </div>
 
   </div>
 
   <script>
     // 1文字ずつコマ送りで表示する関数
-    function typeText(el, text, speed = 60) {
-      let i = 0;
-      el.textContent = '';
-      function step() {
-        if (i < text.length) {
-          el.textContent += text[i];
-          i++;
-          setTimeout(step, speed);
+  function typeText(el, text, speed = 60) {
+    let i = 0;
+    el.textContent = '';
+    function step() {
+      if (i < text.length) {
+        el.textContent += text[i];
+        i++;
+        setTimeout(step, speed);
+      }
+    }
+    step();
+  }
+  // ==============================
+  // 翻訳ロジック
+  // ==============================
+  const Translator = {
+    textArea: '',
+    splitword: [],
+    changedText: '',
+
+    replaceAll(str, beforeStr, afterStr) {
+      const reg = new RegExp(beforeStr, 'g');
+      return str.replace(reg, afterStr);
+    },
+
+    checkString(inputdata) {
+      const re = /^[あ-んゔぁ-ぉゃ-ょー〜æ'íúéiɔ:áəʧʒðʃʤʌθŋómdrɑtlkjghufzbswnpvy\-~{IUeO@u:mdhatSZQlrkjvDgf0zbxswVnTiNp\s]*$/;
+      return re.test(inputdata);
+    },
+
+    checkJp(inputdata) {
+      const re = /^[あ-んゔぁ-ぉゃ-ょー〜\s]*$/;
+      return re.test(inputdata);
+    },
+
+    checkShv(inputdata) {
+      const re = /^[æ'íúéiɔ:áəʧʒðʃʤʌθŋómdrɑtlkjghufzbswnpv\-~y\s]*$/;
+      return re.test(inputdata);
+    },
+
+    checkVoc(inputdata) {
+      const re = /^[{IUeO@u:mdhatSZQlrkjvDgf0zbxswVnTiNpy\-~\s]*$/;
+      return re.test(inputdata);
+    },
+
+    forLang(check, replace, str) {
+      for (let i1 = 0; i1 < this.splitword.length; i1++) {
+        for (let i2 = 0; i2 < str.length; i2++) {
+          if (this.splitword[i1] === str[i2].langNum[check]) {
+            this.changedText += str[i2].langNum[replace];
+          }
         }
       }
-      step();
+      return this.changedText;
+    },
+
+    translate(str, type) {
+      // 空欄の場合
+      if (this.textArea === '') return { success: null, result: '' };
+
+      // 使用できない文字が含まれている場合
+      if (!this.checkString(this.textArea)) return { success: false, result: '' };
+
+      this.splitword = [];
+      this.changedText = '';
+
+      switch (type) {
+        case 'shv':
+          if (this.checkJp(this.textArea)) {
+            this.splitword = this.textArea.split('');
+            this.forLang(0, 1, str);
+          } else if (this.checkVoc(this.textArea)) {
+            this.splitword = this.replaceAll(this.textArea, '\\s', ' y');
+            this.splitword = this.replaceAll(this.splitword, 'v\\sy', 'v ');
+            this.splitword = this.replaceAll(this.splitword, 'bh\\sy', 'bh ');
+            this.splitword = this.replaceAll(this.splitword, 'ph\\sy', 'ph ');
+            this.splitword = this.replaceAll(this.splitword, '@U\\sy', '@U ');
+            this.splitword = this.replaceAll(this.splitword, '\\sy@\\s', ' @ ');
+            this.splitword = this.replaceAll(this.splitword, 'v\\s@\\sy', 'v @ ');
+            this.splitword = this.replaceAll(this.splitword, '@\\sv\\sy', '@ v ');
+            this.splitword = this.replaceAll(this.splitword, 'bh\\s@\\sy', 'bh @ ').split('y');
+            this.forLang(2, 1, str);
+          } else {
+            return { success: false, result: '' };
+          }
+          break;
+
+        case 'voc':
+          if (this.checkJp(this.textArea)) {
+            this.splitword = this.textArea.split('');
+            this.forLang(0, 2, str);
+          } else if (this.checkShv(this.textArea)) {
+            this.splitword = this.replaceAll(this.textArea, 'y', 'yc');
+            this.splitword = this.replaceAll(this.splitword, '-', '-c');
+            this.splitword = this.replaceAll(this.splitword, '~', '~c');
+            this.splitword = this.replaceAll(this.splitword, '\\s', ' c').split('c');
+            this.forLang(1, 2, str);
+          } else {
+            return { success: false, result: '' };
+          }
+          break;
+
+        case 'jp':
+          if (this.checkShv(this.textArea)) {
+            this.splitword = this.replaceAll(this.textArea, '[y]', 'yc');
+            this.splitword = this.replaceAll(this.splitword, '[-]', '-c');
+            this.splitword = this.replaceAll(this.splitword, '[~]', '~c');
+            this.splitword = this.replaceAll(this.splitword, '\\s', ' c').split('c');
+            this.forLang(1, 0, str);
+          } else if (this.checkVoc(this.textArea)) {
+            this.splitword = this.replaceAll(this.textArea, '\\s', ' y');
+            this.splitword = this.replaceAll(this.splitword, 'v\\sy', 'v ');
+            this.splitword = this.replaceAll(this.splitword, 'bh\\sy', 'bh ');
+            this.splitword = this.replaceAll(this.splitword, 'ph\\sy', 'ph ');
+            this.splitword = this.replaceAll(this.splitword, '@U\\sy', '@U ');
+            this.splitword = this.replaceAll(this.splitword, '\\sy@\\s', ' @ ');
+            this.splitword = this.replaceAll(this.splitword, 'v\\s@\\sy', 'v @ ');
+            this.splitword = this.replaceAll(this.splitword, '@\\sv\\sy', '@ v ');
+            this.splitword = this.replaceAll(this.splitword, 'bh\\s@\\sy', 'bh @ ').split('y');
+            this.forLang(2, 0, str);
+          } else {
+            return { success: false, result: '' };
+          }
+          break;
+      }
+
+      return { success: true, result: this.changedText };
     }
-    window.addEventListener('load', () => {
-      const opening = document.getElementById('opening');
+  };
 
-      // 画像が出きったあと、2秒待ってからスライドアップ
-      setTimeout(() => {
-        opening.classList.add('slide-up');
-      }, 2000);
 
-      // スライド完了後、非表示にして裏に隠す
-      opening.addEventListener('transitionend', () => {
-        opening.style.display = 'none';
+  // ==============================
+  // ボタンへのイベント登録
+  // ==============================
+  window.addEventListener('load', () => {
+    const input    = document.getElementById('translateInput');
+    const msgText  = document.getElementById('messageText');
+    const types    = ['shv', 'voc', 'jp']; // ボタンの並び順に合わせてね
 
-      // オープニングが終わったらメッセージをコマ送り表示
-        const message = document.getElementById('messageText');
-        typeText(message, '「いらっしゃいませ〜！\n来てくれてありがとう！」', 60);
+    // 辞書データ
+    const dictionary = [{"langNum": ["あ","æ'y","{ ","","ェア","Trap","træ'p"]},
+  {"langNum": ["い","íy","I ","","イ","Kit","kít"]},
+  {"langNum": ["う","úy","U ","","ウ","Put","pút"]},
+  {"langNum": ["え","éiy","eI ","","エィ","Pay","péi"]},
+  {"langNum": ["お","ɔ':ry","O@ ","","オゥ","Pour","pɔ':r"]},
+  {"langNum": ["か","ú:y","u: ","","ュ","Boot","bú:t"]},
+  {"langNum": ["き","máy","m ","","ム","Mind","máind"]},
+  {"langNum": ["く","dhy","dh @ ","","ダ（dh）","Dog","dɔ':g"]},
+  {"langNum": ["け","íəry","I@ ","","イァ","Beer","bíər"]},
+  {"langNum": ["こ","áiy","aI ","","アィ","Buy","bái"]},
+  {"langNum": ["さ","ʧy","tS @ ","","チャ","Touch","tʌ'ʧ"]},
+  {"langNum": ["し","ʒy","Z ","","シ","Asia","éiʒə"]},
+  {"langNum": ["す","éəry","e@ ","","エゥ","Bear","béər"]},
+  {"langNum": ["せ","ɑ'y","Q ","","オ","Lot","lɑ't"]},
+  {"langNum": ["そ","thy","th @ ","","トァ（th）","Top","tɑ'p"]},
+  {"langNum": ["た","ly","v l ","","ゥ","Feel","fí:l"]},
+  {"langNum": ["ち","əry","@r ","","ウァ","Maker","méikər"]},
+  {"langNum": ["つ","khy","kh @ ","","カ（kh）","Kiss","kís"]},
+  {"langNum": ["て","jy","j @ ","","ヤ","Yellow","jélou"]},
+  {"langNum": ["と","ky","v @ k ","","ヴァク（k）","Rock","rɑ'k"]},
+  {"langNum": ["な","ðy","D @ ","","デャ","Their","ðéər"]},
+  {"langNum": ["に","gy","g @ ","","ガゥ（g）","Bag","bæ'g"]},
+  {"langNum": ["ぬ","éy","e ","","エ","Them","ðém"]},
+  {"langNum": ["ね","ɔ'iy","OI ","","オィ","Boy","bɔ'i"]},
+  {"langNum": ["の","ry","r ","","ル","Red","réd"]},
+  {"langNum": ["は","hy","h @ ","","ハ","Hat","hæ't"]},
+  {"langNum": ["ひ","áuy","aU ","","ァウ","Loud","láud"]},
+  {"langNum": ["ふ","fy","f ","","フゥ","Feel","fí:l"]},
+  {"langNum": ["へ","lhy","l0 ","","ウ","List","líst"]},
+  {"langNum": ["ほ","úəry","U@ ","","ウェ","Poor","púər"]},
+  {"langNum": ["ま","zy","z ","","ツ","Resort","rizɔ':rt"]},
+  {"langNum": ["み","by","b @ ","","バァヴ（b）","Cab","kæ'b"]},
+  {"langNum": ["む","ʃéy","S ","","チ","Share","ʃéər"]},
+  {"langNum": ["め","ɑ':ry","Q@ ","","ォア","Star","stɑ':r"]},
+  {"langNum": ["も","sy","s ","","ス","Sea","sí:"]},
+  {"langNum": ["や","ʤy","dZ @ ","","ジャ","Jeans","ʤí:nz"]},
+  {"langNum": ["ゐ","víy","v @ I ","","ヴァリィ","Kit","kít"]},
+  {"langNum": ["ゆ","wy","w ","","ゥ","Way","wéi"]},
+  {"langNum": ["ゑ","véiy","v @ eI ","","ヴァイ","Pay","péi"]},
+  {"langNum": ["よ","ghy","gh @ ","","ガァ（gh）","God","gɑ'd"]},
+  {"langNum": ["ら","ʌ'y","V ","","ア","Strut","strʌ't"]},
+  {"langNum": ["り","dy","v @ d ","","ヴァド（d）","Bad","bæ'd"]},
+  {"langNum": ["る","ɔ':y","O: ","","オゥ","Taught","tɔ':t"]},
+  {"langNum": ["れ","náy","v @ n ","","ン","Night","náit"]},
+  {"langNum": ["ろ","ty","v @ t ","","ヴァト（t）","Sit","sít"]},
+  {"langNum": ["わ","θy","T @ ","","スュ","Think","θíŋk"]},
+  {"langNum": ["を","í:y","i: ","","イー","Beef","bí:f"]},
+  {"langNum": ["ん","ŋy","v N ","","ンヌ","Long","lɔ':ŋ"]},
+  {"langNum": ["が","bú:y","bh u: ","","ブェ","Boot","bú:t"]},
+  {"langNum": ["ぎ","bmáy","bh m @ ","","ムァ","Mind","máind"]},
+  {"langNum": ["ぐ","bdhy","bh dh @ ","","デァ（dh）","Dog","dɔ':g"]},
+  {"langNum": ["げ","bíəry","bh I@ ","","ビァ","Beer","bíər"]},
+  {"langNum": ["ご","báiy","bh aI ","","バィ","Buy","bái"]},
+  {"langNum": ["ざ","bʧy","bh @ tS ","","バァチ","Touch","tʌ'ʧ"]},
+  {"langNum": ["じ","bʒy","bh @ Z ","","バァシェ","Asia","éiʒə"]},
+  {"langNum": ["ず","béəry","bh e@ ","","べゥ","Bear","béər"]},
+  {"langNum": ["ぜ","bɑ'y","bh Q ","","フォ","Lot","lɑ't"]},
+  {"langNum": ["ぞ","bthy","bh th @ ","","タ（th）","Top","tɑ'p"]},
+  {"langNum": ["だ","bly","bh l ","","ブゥ","Feel","fí:l"]},
+  {"langNum": ["ぢ","bəry","bh @r ","","バァル","Maker","méikər"]},
+  {"langNum": ["づ","bkhy","bh kh @ ","","クアゥ（kh）","Kiss","kís"]},
+  {"langNum": ["で","bjy","bh j @ ","","キァ","Yellow","jélou"]},
+  {"langNum": ["ど","bky","bh v @ k ","","バァク（k）","Rock","rɑ'k"]},
+  {"langNum": ["ば","bhy","bh h ","","へァ","Hat","hæ't"]},
+  {"langNum": ["び","báuy","bh aU ","","バウ","Loud","láud"]},
+  {"langNum": ["ぶ","bfy","bh f ","","フゥッ","Feel","fí:l"]},
+  {"langNum": ["べ","blhy","bh l0 ","","ブ","List","líst"]},
+  {"langNum": ["ぼ","búəry","bh U@ ","","ブェ","Poor","púər"]},
+  {"langNum": ["ぱ","phy","ph h ","","ハァ","Hat","hæ't"]},
+  {"langNum": ["ぴ","páuy","ph aU ","","パゥ","Loud","láud"]},
+  {"langNum": ["ぷ","pfy","ph f ","","ヒゥ","Feel","fí:l"]},
+  {"langNum": ["ぺ","plhy","ph l0 ","","プゥ","List","líst"]},
+  {"langNum": ["ぽ","púəry","ph U@ ","","プァ","Poor","púər"]},
+  {"langNum": ["ぁ","óuæ'y","@U { ","","オウェ","Trap","træ'p"]},
+  {"langNum": ["ぃ","óuíy","@U I ","","オウィ","Kit","kít"]},
+  {"langNum": ["ぅ","óuúy","@U U ","","オウ","Put","pút"]},
+  {"langNum": ["ぇ","óuéiy","@U eI ","","オウェイ","Pay","péi"]},
+  {"langNum": ["ぉ","óuɔ':ry","@U O@ ","","オゥォア","Pour","pɔ':r"]},
+  {"langNum": ["ゃ","óuʤy","@U dZ @ ","","オゥジャ","Jeans","ʤí:nz"]},
+  {"langNum": ["ゅ","óuwy","@U w ","","オゥゥ","Way","wéi"]},
+  {"langNum": ["ょ","óughy","@U gh @ ","","ガァ（gh）","God","gɑ'd"]},
+  {"langNum": ["っ","py","v @ p ","","パ（p）","Dip","díp"]},
+  {"langNum": ["ゔ","vy","v U ","","ヴ","Vote","vóut"]},
+  {"langNum": ["ー","-","- ","","アー","Ah~","~"]},
+  {"langNum": ["〜","~","~ ","","アー","Ah~","~"]},
+  {"langNum": [" "," "," ",""," "," "," "]},
+  {"langNum": ["　","　","　",""," "," "," "]},
+  {"langNum": ["小文字","óu","@U ","","オゥ","Oat","óut"]},
+  {"langNum": ["゛濁音","b","bh @ ","","バゥ（bh）","Big","bíg"]},
+  {"langNum": ["゜半濁音","p","ph @ ","","パゥ（ph）","Peace","pí:s"]} ];
+
+    document.querySelectorAll('.translate-btn').forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        Translator.textArea = input.value;
+        const result = Translator.translate(dictionary, types[index]);
+
+        if (result.success === true) {
+          input.value = result.result;
+        } else if (result.success === false) {
+          msgText.textContent = '使えない文字が含まれてるみたい…';
+        }
+        // success === null(空欄)の時は何もしない
       });
     });
+  });
+
+  // ウィンドウが読み込まれたときにメッセージを表示する
+  window.addEventListener('load', () => {
+    const message = document.getElementById('messageText');
+    typeText(message, '「お、隠しページ見つけちゃった？」', 60);
+  });
+
+
   </script>
 
 </body>
