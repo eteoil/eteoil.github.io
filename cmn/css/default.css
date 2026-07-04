@@ -353,8 +353,8 @@ body {
 }
 
 #choiceList {
-  /* position: absolute; */
-  /* top: 2.8em; */
+  position: absolute;
+  top: 2.8em;
   width: 90%;
   max-width: 680px;
   margin: 0 auto;
