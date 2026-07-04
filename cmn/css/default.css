@@ -273,7 +273,7 @@ body {
 #messageText {
   position: absolute;
   top: 0;
-  padding: 1em 0;
+  padding: 1em 1em 1em 0;
   width: 95%;
   height: auto;
 }
