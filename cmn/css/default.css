@@ -296,7 +296,7 @@ body {
 }
 @media screen and (min-width: 747px) {
   .message-box {
-    max-height: 230px;
+    max-height: 300px;
   }
 }
 @media screen and (min-width: 800px) {
@@ -306,8 +306,8 @@ body {
 }
 @media screen and (min-width: 880px) {
   .message-box {
+    max-height: 240px;
     font-size: 1.6em;
-    /* line-height: 1.4; */
     line-height: 1;
   }
 }
