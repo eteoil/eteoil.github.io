@@ -73,6 +73,12 @@ body {
   width: 60%;
   max-width: 536px;
 }
+.scene button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
 .scene .calendar {
   position: absolute;
   top: 28%;
@@ -80,6 +86,7 @@ body {
   transform: translateX(-50%);
   width: 15%;
   max-width: 120px;
+  max-height: 100px;
 }
 .scene .bookshelf {
   position: absolute;
@@ -105,12 +112,12 @@ body {
   width: 10%;
   max-width: 104px;
 }
-#tem {
+#temBtn {
   position: absolute;
   bottom: 1%;
   left: 8%;
-  width: 20%;
-  max-width: 160px;
+  width: 17%;
+  max-width: 140px;
 }
 .temColor0 {
   fill: #ffffff;
@@ -125,9 +132,9 @@ body {
   display: inline;
   fill: #ffffff;
 }
-#gumiChan {
+#gumiBtn {
   position: absolute;
-  bottom: -16%;
+  bottom: -10%;
   right: 8%;
   width: 30%;
   max-width: 250px;
@@ -180,33 +187,38 @@ body {
 }
 
 @media screen and (min-width: 400px) {
-  #gumiChan {
-    bottom: -13%;
+  #gumiBtn {
+    bottom: -9%;
+  }
+}
+@media screen and (min-width: 500px) {
+  #gumiBtn {
+    bottom: -8%;
   }
 }
 @media screen and (min-width: 600px) {
-  #gumiChan {
-    bottom: -11%;
+  #gumiBtn {
+    bottom: -7%;
   }
 }
 @media screen and (min-width: 740px) {
-  #gumiChan {
-    bottom: -10%;
+  #gumiBtn {
+    bottom: -6%;
   }
 }
 @media screen and (min-width: 780px) {
-  #gumiChan {
-    bottom: -8%;
+  #gumiBtn {
+    bottom: -5%;
   }
 }
 @media screen and (min-width: 800px) {
-  #gumiChan {
-    bottom: -8%;
+  #gumiBtn {
+    /* bottom: -5%; */
   }
 }
 @media screen and (min-width: 820px) {
-  #gumiChan {
-    bottom: -5%;
+  #gumiBtn {
+    /* bottom: -5%; */
   }
 }
 @media screen and (min-width: 880px) {
@@ -229,7 +241,7 @@ body {
     top: 77%;
     left: 47%;
   }
-  #gumiChan {
+  #gumiBtn {
     bottom: -4%;
   }
 }
@@ -266,7 +278,6 @@ body {
   font-size: 1.1em;
   line-height: 1.4;
   white-space: pre-wrap;
-  /* overflow: visible; */
   overflow-y: auto;
 }
 
@@ -294,6 +305,12 @@ body {
     font-size: 1.5em;
   }
 }
+@media screen and (min-width: 740px) {
+  .message-box {
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
 @media screen and (min-width: 747px) {
   .message-box {
     max-height: 300px;
@@ -316,6 +333,7 @@ body {
     width: 94%;
   }
 }
+
 /* SHOP・ORDERボタン */
 .menu {
   width: 90%;
@@ -323,8 +341,6 @@ body {
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
-  /* margin-top: auto; */
-  /* padding: 32px 0; */
 }
 
 .menu button {
@@ -376,108 +392,7 @@ body {
     top: 3.8em;
   }
 }
-/* テキスト入力 */
-.translate-input {
-  position: absolute;
-  top: 4em;
-  width: 87%;
-  display: block;
-  margin-top: 12px;
-  padding: 10px 14px;
-  border: 2px solid #c98a8a;
-  border-radius: 6px;
-  font-size: 1rem;
-  color: #7a3b3b;
-  outline: none;
-  background: #fff;
-  box-sizing: border-box;
-  resize: none;
-}
 
-.translate-input::placeholder {
-  color: #c4a0a0;
-}
-
-.translate-input:focus {
-  border-color: #b75252;
-}
-@media screen and (min-width: 440px) {
-  .translate-input {
-    width: 91%;
-  }
-}
-@media screen and (min-width: 600px) {
-  .translate-input {
-    width: 92%;
-  }
-}
-@media screen and (min-width: 748px) {
-  .translate-input {
-    width: 93%;
-  }
-}
-@media screen and (min-width: 880px) {
-  .translate-input {
-    width: 95%;
-  }
-}
-/* ボタン群 */
-.translate-buttons {
-  position: absolute;
-  top: 6em;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.translate-btn {
-  background: none;
-  border: 2px solid #b75252;
-  border-radius: 6px;
-  color: #b75252;
-  font-size: 1rem;
-  padding: 6px 14px;
-  cursor: pointer;
-  letter-spacing: 1px;
-}
-.translate-btn:hover {
-  background: #c61626;
-  color: #fff;
-}
-
-@media screen and (max-width: 800px) {
-  .translate-buttons {
-    flex-direction: column;
-    top: 6em;
-  }
-  .translate-btn:last-child {
-    margin-bottom: 12px;
-  }
-}
-@media screen and (max-width: 700px) {
-  .translate-buttons {
-    top: 6.4em;
-  }
-}
-@media screen and (max-width: 540px) {
-  .translate-input {
-    height: 4em;
-  }
-  .translate-buttons {
-    top: 6.1em;
-  }
-}
-@media screen and (max-width: 520px) {
-  .translate-buttons {
-    top: 6.6em;
-  }
-}
-@media screen and (max-width: 440px) {
-  .translate-buttons {
-    top: 7.8em;
-  }
-}
 /* 選択肢 */
 .choice-list {
   margin-top: 8px;

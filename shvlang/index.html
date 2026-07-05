@@ -12,10 +12,118 @@
 <style>
 
 .message-box {
-  max-height: 300px;
+  max-height: 320px;
 }
 
+/* テキスト入力 */
+.translate-input {
+  position: absolute;
+  /* top: 4em; */
+  top: 5em;
+  width: 87%;
+  display: block;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: 2px solid #c98a8a;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #7a3b3b;
+  outline: none;
+  background: #fff;
+  box-sizing: border-box;
+  resize: none;
+}
 
+.translate-input::placeholder {
+  color: #c4a0a0;
+}
+
+.translate-input:focus {
+  border-color: #b75252;
+}
+@media screen and (min-width: 440px) {
+  .translate-input {
+    width: 91%;
+  }
+}
+@media screen and (min-width: 600px) {
+  .translate-input {
+    width: 92%;
+  }
+}
+@media screen and (min-width: 748px) {
+  .translate-input {
+    width: 93%;
+  }
+}
+@media screen and (min-width: 880px) {
+  .translate-input {
+    width: 95%;
+  }
+}
+/* ボタン群 */
+.translate-buttons {
+  position: absolute;
+  top: 6.7em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.translate-btn {
+  background: none;
+  border: 2px solid #b75252;
+  border-radius: 6px;
+  color: #b75252;
+  font-size: 1rem;
+  padding: 6px 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.translate-btn:hover {
+  background: #c61626;
+  color: #fff;
+}
+
+@media screen and (min-width: 880px) {
+  .translate-buttons {
+    top: 6.3em;
+  }
+}
+@media screen and (max-width: 800px) {
+  .translate-buttons {
+    flex-direction: column;
+    top: 6.65em;
+  }
+  .translate-btn:last-child {
+    margin-bottom: 12px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .translate-buttons {
+    top: 7.1em;
+  }
+}
+@media screen and (max-width: 540px) {
+  .translate-input {
+    height: 4em;
+    top: 4.5em;
+  }
+  .translate-buttons {
+    top: 6.4em;
+  }
+}
+@media screen and (max-width: 520px) {
+  .translate-buttons {
+    top: 6.95em;
+  }
+}
+@media screen and (max-width: 440px) {
+  .translate-buttons {
+    top: 8.2em;
+  }
+}
 </style>
 </head>
 <body>
@@ -464,22 +572,10 @@
   </div>
 
   <script>
-    // 1文字ずつコマ送りで表示する関数
-  function typeText(el, text, speed = 60) {
-    let i = 0;
-    el.textContent = '';
-    function step() {
-      if (i < text.length) {
-        el.textContent += text[i];
-        i++;
-        setTimeout(step, speed);
-      }
-    }
-    step();
-  }
-    // コマ送りのタイマーIDを保持する変数
+    // 前のコマ送りのタイマーIDを保持する変数
     let typeTimer = null;
 
+    // 1文字ずつコマ送りで表示する関数
     function typeText(el, text, speed = 60) {
       // 前のコマ送りを止める
       if (typeTimer) {
@@ -493,11 +589,46 @@
         if (i < text.length) {
           el.textContent += text[i];
           i++;
-          typeTimer = setTimeout(step, speed); // IDを保持
+          typeTimer = setTimeout(step, speed); // IDをtypeTimerに保存する
         }
       }
       step();
+    }
+  // 画面幅が740px以上の時、半角・全角スペースを非表示にする関数
+  function stripSpaceForWide(text) {
+    if (window.matchMedia('(min-width: 740px)').matches) {
+      return text.replace(/[ 　\n]/g, '');
+    }
+    return text;
   }
+
+  // 今表示中のメッセージの元テキストを保持しておく
+  let currentRawMessage = '';
+
+  function displayMessage(rawText, useTyping = true) {
+    currentRawMessage = rawText;
+    const msgText = document.getElementById('messageText');
+    const processed = stripSpaceForWide(rawText);
+
+    if (useTyping) {
+      typeText(msgText, processed, 60);
+    } else {
+      // コマ送りを止めて即座に切り替え
+      if (typeTimer) {
+        clearTimeout(typeTimer);
+        typeTimer = null;
+      }
+      msgText.textContent = processed;
+    }
+  }
+
+  // 740pxのブレイクポイントをまたいだ瞬間に再描画
+  const breakpointQuery = window.matchMedia('(min-width: 740px)');
+  breakpointQuery.addEventListener('change', () => {
+    if (currentRawMessage) {
+      displayMessage(currentRawMessage, false); // コマ送りなしで即切り替え
+    }
+  });
   // ==============================
   // 翻訳ロジック
   // ==============================
@@ -725,7 +856,7 @@
         if (result.success === true) {
           input.value = result.result;
         } else if (result.success === false) {
-          msgText.textContent = '「使えない文字が含まれてるみたい……」';
+          displayMessage('「使えない文字が\n　含まれてるみたい……」', false);
         }
         // success === null(空欄)の時は何もしない
       });
@@ -734,8 +865,7 @@
 
   // ウィンドウが読み込まれたときにメッセージを表示する
   window.addEventListener('load', () => {
-    const message = document.getElementById('messageText');
-    typeText(message, '「お、隠しページ見つけちゃった？」', 60);
+    displayMessage('「お、隠しページ\n　見つけちゃった？」', true);
   });
 
 
