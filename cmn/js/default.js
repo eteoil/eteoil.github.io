@@ -1,0 +1,267 @@
+    // 表示するセリフをまとめておく
+  const idleMessages = [
+    '「いらっしゃいませ〜！\n来てくれてありがとう！」',
+    '「売り物を見たい場合はSHOP、ご依頼の場合はORDERを選んでね！」',
+    '「プロフィールを見たい場合はテムくんをタップだ！」',
+    '「テムくんは部屋の隅にいる白ウサギさ。部屋の主について教えてくれるよ」',
+    '「僕の事？そうだなぁ…\n『グミちゃん』とでも呼んでくれると嬉しいな！」',
+    '「グミ☆ちゃんとの違い…？\n hahaha, nani wo itteru noka \n wakannnai na !」',
+    '（中の人など・・・・・・いない！）',
+    '「・・・・・・・・・・・・」',
+    '「本棚とか机とか置いてみたけど、だいぶヒトが住んでる感出たね〜」',
+    '「思ってたより手狭になったなぁ……ちょっと次家具を増やすときは考えないと」',
+    '「・・・・・・」',
+    '「・・・・・・」',
+    '「・・・ボーッとしてどうしたんだい？」',
+    '「あ、もしかして案内を読み飛ばしちゃったのかな？\nじゃあもう一回説明しよう！」'
+  ];
+  let idleIndex = 0;
+  let idleTimer = null;
+  // 前のコマ送りのタイマーIDを保持する変数
+  let typeTimer = null;
+  // セリフの文字数から待ち時間を計算する(空白・改行は文字数に含めない)
+  function calcIdleDelay(text) {
+    const length = text.replace(/[ 　\n]/g, '').length;
+    return (length * 0.1 + 3) * 1000; // 文字数(秒) + 3秒 → ミリ秒に変換
+  }
+  // 選択肢を非表示にする
+  function clearChoices() {
+    document.getElementById('choiceList').innerHTML = '';
+  }
+  // 次のセリフに進める共通処理(タイマーからもクリックからも呼ぶ)
+  const idleLoopEnd = 13;
+  function advanceIdleMessage() {
+    if (idleIndex >= idleLoopEnd) {
+      idleIndex = 1;
+    } else {
+      idleIndex++;
+    }
+    clearChoices();
+    displayMessage(idleMessages[idleIndex], true);
+    scheduleIdleMessage(idleMessages[idleIndex]);
+  }
+  // 次のセリフへ進むタイマーをセットする
+  function scheduleIdleMessage(text) {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => {
+      advanceIdleMessage();
+    }, calcIdleDelay(text));
+  }
+  // メッセージボックスをクリックしたら、コマ送り中でも即・次のセリフへ
+  document.querySelector('.message-box').addEventListener('click', () => {
+    switch (document.getElementById('messageText')) {
+      case document.getElementById('translateInput') !== null && document.getElementById('translateInput').classList !== 'hidden':
+        return; // 翻訳入力中はクリックを無視する
+      case document.getElementById('choiceList').getElementsByTagName('span') !== null || undefined:
+        return; // 選択肢表示時はクリックを無視する
+      default:
+        advanceIdleMessage();
+    }
+  });
+  // 1文字ずつコマ送りで表示する関数
+  function typeText(el, text, speed = 60) {
+    // 前のコマ送りを止める
+    if (typeTimer) {
+      clearTimeout(typeTimer);
+      typeTimer = null;
+    }
+
+    let i = 0;
+    el.textContent = '';
+    function step() {
+      if (i < text.length) {
+        el.textContent += text[i];
+        i++;
+        typeTimer = setTimeout(step, speed); // IDをtypeTimerに保存する
+      }
+    }
+    step();
+  }
+  // テキストの表示幅を測る関数
+  function measureTextWidth(text) {
+  const canvas = measureTextWidth._canvas || (measureTextWidth._canvas = document.createElement('canvas'));
+  const ctx = canvas.getContext('2d');
+  const msgText = document.getElementById('messageText');
+  const style = getComputedStyle(msgText);
+  ctx.font = `${style.fontSize} ${style.fontFamily}`;
+  return ctx.measureText(text).width;
+  }
+  // 画面幅が740px以上の時、改行を非表示にする関数
+  function stripSpaceForWide(text) {
+    const msgBox = document.querySelector('.message-box');
+
+    if (window.matchMedia('(min-width: 740px)').matches) {
+      const stripped = text.replace(/[ \n]/g, '');
+      const width = measureTextWidth(stripped);
+
+      if (width > 740) {
+        // 長すぎる時は折り返し表示に切り替えて、元のテキストのまま返す
+        msgBox.classList.add('wrap-mode');
+        return text;
+      } else {
+        msgBox.classList.remove('wrap-mode');
+        return stripped;
+      }
+    }
+
+    msgBox.classList.remove('wrap-mode');
+    return text;
+  }
+  // 今表示中のメッセージの元テキストを保持しておく
+  let currentRawMessage = '';
+
+  function displayMessage(rawText, useTyping = true) {
+    currentRawMessage = rawText;
+    const msgText = document.getElementById('messageText');
+    const processed = stripSpaceForWide(rawText);
+
+    if (useTyping) {
+      typeText(msgText, processed, 60);
+    } else {
+      // コマ送りを止めて即座に切り替え
+      if (typeTimer) {
+        clearTimeout(typeTimer);
+        typeTimer = null;
+      }
+      msgText.textContent = processed;
+    }
+  }
+
+  // 740pxのブレイクポイントをまたいだ瞬間に再描画
+  const breakpointQuery = window.matchMedia('(min-width: 740px)');
+  breakpointQuery.addEventListener('change', () => {
+    if (currentRawMessage) {
+      displayMessage(currentRawMessage, false); // コマ送りなしで即切り替え
+    }
+  });
+  // SHOP・ORDER・シーン選択の関数
+  const shopData = {
+    message: '「現在は3つのショップから\n　販売を行なっているよ！」',
+    choices: [
+      { label: 'BOOTH',     url: 'https://vtb001.booth.pm/' },
+      { label: 'PIXTA',     url: 'https://creator.pixta.jp/@eteoil' },
+      { label: 'LINEスタンプ', url: 'https://store.line.me/stickershop/author/2410058/ja' },
+    ]
+  };
+
+  const orderData = {
+    message: '「現在は3つのルートから\n　依頼を受けているよ！」',
+    choices: [
+      { label: 'Skeb',          url: 'https://skeb.jp/@eteoil' },
+      { label: 'つなぐ',         url: 'https://tsunagu.cloud/users/eteoil' },
+      { label: 'Pixivリクエスト', url: 'https://www.pixiv.net/users/23216671/request' },
+    ]
+  };
+  const calendarData = {
+    message: 'ダサいカレンダーがある',
+    choices: [
+      { label: '確認してみる',          action: openPopup },
+      { label: 'ダッセェなぁ……',          action: restartIdleLoop },
+    ]
+  };
+
+  const bookshelfData = {
+    message: '専門書・小説・マンガ等が並んでいる',
+    choices: [
+      { label: '専門書を手にとる',          url: 'https://www.foriio.com/eteoil' },
+      { label: 'シリーズ物の本を手にとる',          url: 'https://note.com/eteoil/n/nac6506e4dcbe' },
+    ]
+  };
+
+  const bookData = {
+    message: '誰かの日記帳のようだ',
+    choices: [
+      { label: '雑記部分を読む',          url: 'https://note.com/eteoil/m/med63620e2cb8' },
+      { label: 'らくがきを眺める',          url: 'https://eteoil.fanbox.cc/' },
+    ]
+  };
+
+  const temData = {
+    message: 'テムくんが部屋の主について教えてくれるようだ',
+    choices: [
+      { label: '教えてテムくん',          url: 'https://taittsuu.com/users/eteoil/profiles' },
+      { label: '興味ないね',          action: restartIdleLoop },
+    ]
+  };
+
+  const gumiData = {
+    action: restartIdleLoop
+  };
+  // アイドルループを「SHOP・ORDER案内」から再スタートさせる
+  function restartIdleLoop() {
+    idleIndex = 1;
+    clearChoices();
+    displayMessage(idleMessages[idleIndex], true);
+    scheduleIdleMessage(idleMessages[idleIndex]);
+  }
+  // SHOP・ORDERをクリックした時の処理
+  function showChoices(data) {
+    clearTimeout(idleTimer);
+    const choiceList = document.getElementById('choiceList');
+
+    displayMessage(data.message, true);
+
+    choiceList.innerHTML = '';
+    data.choices.forEach(item => {
+      const el = document.createElement('span');
+      el.className = 'choice-item';
+      el.textContent = item.label;
+      el.addEventListener('click', () => {
+        event.stopPropagation();
+        if (item.action) {
+          item.action(); // ← urlじゃなくて関数を実行したい場合
+        } else {
+          window.open(item.url, '_blank');
+        }
+      });
+      choiceList.appendChild(el);
+    });
+  }
+  // シーン内のボタンをクリックした時の処理
+  const sceneButtons = [
+    { id: 'calendarBtn',  data: calendarData },
+    { id: 'bookshelfBtn', data: bookshelfData },
+    { id: 'bookBtn',      data: bookData },
+    { id: 'temBtn',       data: temData },
+    { id: 'gumiBtn',      data: gumiData },
+  ];
+
+  sceneButtons.forEach(({ id, data }) => {
+    document.getElementById(id).addEventListener('click', () => {
+      const translateInput = document.getElementById('translateInput');
+      const translateButtons = document.getElementById('translateButtons');
+      if (translateInput) {
+        translateInput.classList.add('hidden');
+      }
+      if (translateButtons) {
+        translateButtons.classList.add('hidden');
+      }
+      if (data.action) {
+        data.action();
+      } else {
+        showChoices(data);
+      }
+    });
+  });
+  // ポップアップの表示・非表示
+  function openPopup() {
+    const popupBg = document.querySelector('.popupBg');
+    popupBg.style.display = ''
+    if (popupBg.classList.contains("close")) {
+      popupBg.classList.remove("close");
+    }
+    popupBg.classList.add("open");
+  }
+  function closePopup() {
+    const popupBg = document.querySelector('.popupBg');
+    if (popupBg.classList.contains("open")) {
+      popupBg.classList.remove("open");
+    }
+    popupBg.classList.add("close");
+    // フェードアウトのアニメーションが終わったら、完全に非表示にする
+    document.querySelector('.popupBg').addEventListener('animationend', (event) => {
+      if (popupBg.classList.contains('close')) {
+        popupBg.style.display = 'none';
+      }
+    });
+  }
