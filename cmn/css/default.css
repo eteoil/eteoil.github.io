@@ -116,6 +116,8 @@ body {
   position: absolute;
   bottom: 1%;
   left: 8%;
+}
+#tem {
   width: 17%;
   max-width: 140px;
 }
@@ -136,6 +138,8 @@ body {
   position: absolute;
   bottom: -10%;
   right: 8%;
+}
+#gumiChan {
   width: 30%;
   max-width: 250px;
   max-height: 445px;
@@ -280,13 +284,35 @@ body {
   white-space: pre-wrap;
   overflow-y: auto;
 }
-
+.message-box.wrap-mode {
+  white-space: pre-wrap !important;
+}
 #messageText {
   position: absolute;
   top: 0;
-  padding: 1em 1em 1em 0;
+  padding: 1em;
   width: 95%;
   height: auto;
+  display: inline-block;
+  text-indent: -1em;
+}
+.message-box.wrap-mode #messageText {
+  padding-left: 0;
+}
+@media screen and (max-width: 480px) {
+  #messageText{
+  max-width: 380px;
+  }
+}
+@media screen and (max-width: 400px) {
+  #messageText{
+  max-width: 320px;
+  }
+}
+@media screen and (max-width: 375px) {
+  #messageText{
+  max-width: 260px;
+  }
 }
 @media screen and (min-width: 440px) {
   .message-box {
@@ -415,4 +441,50 @@ body {
 .choice-item:hover::before {
   content: '▶';
   margin-right: 6px;
+}
+/* ポップアップ */
+.popupBg {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.popupContent {
+  margin: 0 auto;
+}
+.popupContent.popupCalendar {
+  width: 100%;
+  max-width: 370px;
+  height: 100%;
+  max-height: 300px;
+}
+.popupBg.open {
+  display: flex;
+  animation: fadeInLogo 0.5s ease-in forwards;
+}
+.popupBg.close {
+  display: none;
+  animation: fadeInLogo 0.5s ease-out forwards;
+}
+@media screen and (min-width: 440px) {
+  .popupContent.popupCalendar {
+    max-width: 470px;
+    max-height: 400px;
+  }
+}
+@media screen and (min-width: 600px) {
+  .popupContent.popupCalendar {
+    max-width: 570px;
+    max-height: 500px;
+  }
+}
+@media screen and (min-width: 800px) {
+  .popupContent.popupCalendar {
+    max-width: 670px;
+    max-height: 600px;
+  }
 }
