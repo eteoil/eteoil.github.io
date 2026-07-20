@@ -301,6 +301,7 @@ body {
 #messageText {
   position: absolute;
   top: 0;
+  left: 1em;
   padding: 1em;
   width: 95%;
   height: auto;
@@ -502,6 +503,50 @@ body {
     max-width: 670px;
     max-height: 600px;
   }
+}
+
+/* キャラの表情 */
+[id*="temEye"],
+[id*="gumiEye"],
+[id*="gumiMouth"] {
+  display: none;
+}
+
+/* アクティブなものだけ表示 */
+#temEyeLClose.is-active,
+#temEyeRClose.is-active,
+#temEyeLHalf.is-active,
+#temEyeRHalf.is-active,
+#temEyeLOpen.is-active,
+#temEyeROpen.is-active,
+#gumiEyeLClose.is-active,
+#gumiEyeRClose.is-active,
+#gumiEyeLHalf.is-active,
+#gumiEyeRHalf.is-active,
+#gumiEyeLOpen.is-active,
+#gumiEyeROpen.is-active,
+#gumiEyeLIrisOpen.is-active,
+#gumiEyeRIrisOpen.is-active,
+#gumiEyeLIrisHalf.is-active,
+#gumiEyeRIrisHalf.is-active,
+#gumiMouth.is-active {
+  display: inline;
+}
+#temEyeLClose.is-wink,
+#temEyeRClose.is-wink {
+  transform: rotate(180deg) translate(-51px, -67px);
+}
+#gumiEyeLIrisOpen.is-moveLeft,
+#gumiEyeRIrisOpen.is-moveLeft,
+#gumiEyeLIrisHalf.is-moveLeft,
+#gumiEyeRIrisHalf.is-moveLeft {
+  transform: translate(-3px, 0px);
+}
+#gumiEyeLIrisOpen.is-moveTop,
+#gumiEyeRIrisOpen.is-moveTop,
+#gumiEyeLIrisHalf.is-moveTop,
+#gumiEyeRIrisHalf.is-moveTop {
+  transform: translate(-2px, -2px);
 }
 
 .hidden {

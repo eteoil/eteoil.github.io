@@ -1,19 +1,155 @@
     // 表示するセリフをまとめておく
   const idleMessages = [
-    '「いらっしゃいませ〜！\n来てくれてありがとう！」',
-    '「売り物を見たい場合はSHOP、ご依頼の場合はORDERを選んでね！」',
-    '「プロフィールを見たい場合はテムくんをタップだ！」',
-    '「テムくんは部屋の隅にいる白ウサギさ。部屋の主について教えてくれるよ」',
-    '「僕の事？そうだなぁ…\n『グミちゃん』とでも呼んでくれると嬉しいな！」',
-    '「グミ☆ちゃんとの違い…？\n hahaha, nani wo itteru noka \n wakannnai na !」',
-    '（中の人など・・・・・・いない！）',
-    '「・・・・・・・・・・・・」',
-    '「本棚とか机とか置いてみたけど、だいぶヒトが住んでる感出たね〜」',
-    '「思ってたより手狭になったなぁ……ちょっと次家具を増やすときは考えないと」',
-    '「・・・・・・」',
-    '「・・・・・・」',
-    '「・・・ボーッとしてどうしたんだい？」',
-    '「あ、もしかして案内を読み飛ばしちゃったのかな？\nじゃあもう一回説明しよう！」'
+    { text: '「いらっしゃいませ〜！\n　来てくれてありがとう！」',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: 'gumiMouth' },
+    { text: '「売り物を見たい場合はSHOP、ご依頼の場合はORDERを選んでね！」',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: 'gumiMouth' },
+    { text: '「プロフィールを見たい場合はテムくんをタップだ！」',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: 'gumiMouth' },
+    { text: '「テムくんは部屋の隅にいる白ウサギさ。部屋の主について教えてくれるよ」',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeRClose',
+      temWink: 'temEyeRClose',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: 'gumiMouth' },
+    { text: '「僕の事？そうだなぁ…\n『グミちゃん』とでも呼んでくれると嬉しいな！」',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: 'gumiMouth' },
+    { text: '「グミ☆ちゃんとの違い…？\n hahaha, nani wo itteru noka \n wakannnai na !」',
+      temEyeL: 'temEyeLHalf',
+      temEyeR: 'temEyeRHalf',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLHalf',
+      gumiEyeR: 'gumiEyeRHalf',
+      gumiEyeLIris: 'gumiEyeLIrisHalf',
+      gumiEyeRIris: 'gumiEyeRIrisHalf',
+      moveIris: '',
+      gumiMouth: 'gumiMouth' },
+    { text: '（中の人など・・・・・・いない！）',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: '' },
+    { text: '「・・・・・・」',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: '' },
+    { text: '「・・・・・・・・・・・・」',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: '' },
+    { text: '「本棚とか机とか置いてみたけど、だいぶヒトが住んでる感出たね〜」',
+      temEyeL: 'tem EyeLOpen',
+      temEyeR: 'tem EyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumi EyeLOpen',
+      gumiEyeR: 'gumi EyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: 'gumiMouth' },
+    { text: '「思ってたより手狭になったなぁ……ちょっと次家具を増やすときは考えないと」',
+      temEyeL: 'temEyeLClose',
+      temEyeR: 'temEyeRClose',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLHalf',
+      gumiEyeR: 'gumiEyeRHalf',
+      gumiEyeLIris: 'gumiEyeLIrisHalf',
+      gumiEyeRIris: 'gumiEyeRIrisHalf',
+      moveIris: '',
+      gumiMouth: 'gumiMouth' },
+    { text: '「・・・・・・」',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: '' },
+    { text: '「・・・・・・」',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: '' },
+    { text: '「・・・ボーッとしてどうしたんだい？」',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: 'gumiMouth' },
+    { text: '「あ、もしかして案内を読み飛ばしちゃったのかな？\nじゃあもう一回説明しよう！」',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
+      temWink: '',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
+      gumiEyeLIris: 'gumiEyeLIrisOpen',
+      gumiEyeRIris: 'gumiEyeRIrisOpen',
+      moveIris: '',
+      gumiMouth: 'gumiMouth' }
   ];
   let idleIndex = 0;
   let idleTimer = null;
@@ -38,7 +174,7 @@
     }
     clearChoices();
     displayMessage(idleMessages[idleIndex], true);
-    scheduleIdleMessage(idleMessages[idleIndex]);
+    scheduleIdleMessage(idleMessages[idleIndex].text);
   }
   // 次のセリフへ進むタイマーをセットする
   function scheduleIdleMessage(text) {
@@ -49,7 +185,7 @@
   }
   // メッセージボックスをクリックしたら、コマ送り中でも即・次のセリフへ
   document.querySelector('.message-box').addEventListener('click', () => {
-    switch (document.getElementById('messageText')) {
+    switch (document.getElementById('messageText') !==null) {
       case document.getElementById('translateInput') !== null && document.getElementById('translateInput').classList !== 'hidden':
         return; // 翻訳入力中はクリックを無視する
       case document.getElementById('choiceList').getElementsByTagName('span') !== null || undefined:
@@ -111,9 +247,10 @@
   let currentRawMessage = '';
 
   function displayMessage(rawText, useTyping = true) {
-    currentRawMessage = rawText;
-    const msgText = document.getElementById('messageText');
-    const processed = stripSpaceForWide(rawText);
+  currentRawMessage = rawText;
+  setFace(rawText);
+  const msgText = document.getElementById('messageText');
+  const processed = stripSpaceForWide(rawText.text);
 
     if (useTyping) {
       typeText(msgText, processed, 60);
@@ -136,7 +273,16 @@
   });
   // SHOP・ORDER・シーン選択の関数
   const shopData = {
-    message: '「現在は3つのショップから\n　販売を行なっているよ！」',
+    text: '「現在は3つのショップから\n　販売を行なっているよ！」',
+    temEyeL: 'temEyeLOpen',
+    temEyeR: 'temEyeROpen',
+    temWink: '',
+    gumiEyeL: 'gumiEyeLOpen',
+    gumiEyeR: 'gumiEyeROpen',
+    gumiEyeLIris: 'gumiEyeLIrisOpen',
+    gumiEyeRIris: 'gumiEyeRIrisOpen',
+    moveIris: '',
+    gumiMouth: 'gumiMouth',
     choices: [
       { label: 'BOOTH',     url: 'https://vtb001.booth.pm/' },
       { label: 'PIXTA',     url: 'https://creator.pixta.jp/@eteoil' },
@@ -145,7 +291,16 @@
   };
 
   const orderData = {
-    message: '「現在は3つのルートから\n　依頼を受けているよ！」',
+    text: '「現在は3つのルートから\n　依頼を受けているよ！」',
+    temEyeL: 'temEyeLOpen',
+    temEyeR: 'temEyeROpen',
+    temWink: '',
+    gumiEyeL: 'gumiEyeLOpen',
+    gumiEyeR: 'gumiEyeROpen',
+    gumiEyeLIris: 'gumiEyeLIrisOpen',
+    gumiEyeRIris: 'gumiEyeRIrisOpen',
+    moveIris: '',
+    gumiMouth: 'gumiMouth',
     choices: [
       { label: 'Skeb',          url: 'https://skeb.jp/@eteoil' },
       { label: 'つなぐ',         url: 'https://tsunagu.cloud/users/eteoil' },
@@ -153,7 +308,16 @@
     ]
   };
   const calendarData = {
-    message: 'ダサいカレンダーがある',
+    text: 'ダサいカレンダーがある',
+    temEyeL: 'temEyeLHalf',
+    temEyeR: 'temEyeRHalf',
+    temWink: '',
+    gumiEyeL: 'gumiEyeLHalf',
+    gumiEyeR: 'gumiEyeRHalf',
+    gumiEyeLIris: 'gumiEyeLIrisHalf',
+    gumiEyeRIris: 'gumiEyeRIrisHalf',
+    moveIris: 'is-moveLeft',
+    gumiMouth: '',
     choices: [
       { label: '確認してみる',          action: openPopup },
       { label: 'ダッセェなぁ……',          action: restartIdleLoop },
@@ -161,7 +325,16 @@
   };
 
   const bookshelfData = {
-    message: '専門書・小説・マンガ等が並んでいる',
+    text: '専門書・小説・マンガ等が並んでいる',
+    temEyeL: 'temEyeLOpen',
+    temEyeR: 'temEyeROpen',
+    temWink: '',
+    gumiEyeL: 'gumiEyeLOpen',
+    gumiEyeR: 'gumiEyeROpen',
+    gumiEyeLIris: 'gumiEyeLIrisOpen',
+    gumiEyeRIris: 'gumiEyeRIrisOpen',
+    moveIris: 'is-moveTop',
+    gumiMouth: '',
     choices: [
       { label: '専門書を手にとる',          url: 'https://www.foriio.com/eteoil' },
       { label: 'シリーズ物の本を手にとる',          url: 'https://note.com/eteoil/n/nac6506e4dcbe' },
@@ -169,7 +342,16 @@
   };
 
   const bookData = {
-    message: '誰かの日記帳のようだ',
+    text: '誰かの日記帳のようだ',
+    temEyeL: 'temEyeLOpen',
+    temEyeR: 'temEyeROpen',
+    temWink: '',
+    gumiEyeL: 'gumiEyeLOpen',
+    gumiEyeR: 'gumiEyeROpen',
+    gumiEyeLIris: 'gumiEyeLIrisOpen',
+    gumiEyeRIris: 'gumiEyeRIrisOpen',
+    moveIris: 'is-moveLeft',
+    gumiMouth: '',
     choices: [
       { label: '雑記部分を読む',          url: 'https://note.com/eteoil/m/med63620e2cb8' },
       { label: 'らくがきを眺める',          url: 'https://eteoil.fanbox.cc/' },
@@ -177,7 +359,16 @@
   };
 
   const temData = {
-    message: 'テムくんが部屋の主について教えてくれるようだ',
+    text: 'テムくんが部屋の主について教えてくれるようだ',
+    temEyeL: 'temEyeLOpen',
+    temEyeR: 'temEyeRClose',
+    temWink: 'temEyeRClose',
+    gumiEyeL: 'gumiEyeLOpen',
+    gumiEyeR: 'gumiEyeROpen',
+    gumiEyeLIris: 'gumiEyeLIrisOpen',
+    gumiEyeRIris: 'gumiEyeRIrisOpen',
+    moveIris: 'is-moveLeft',
+    gumiMouth: '',
     choices: [
       { label: '教えてテムくん',          url: 'https://taittsuu.com/users/eteoil/profiles' },
       { label: '興味ないね',          action: restartIdleLoop },
@@ -192,24 +383,24 @@
     idleIndex = 1;
     clearChoices();
     displayMessage(idleMessages[idleIndex], true);
-    scheduleIdleMessage(idleMessages[idleIndex]);
+    scheduleIdleMessage(idleMessages[idleIndex].text);
   }
   // SHOP・ORDERをクリックした時の処理
   function showChoices(data) {
     clearTimeout(idleTimer);
     const choiceList = document.getElementById('choiceList');
 
-    displayMessage(data.message, true);
+    displayMessage(data, true);
 
     choiceList.innerHTML = '';
     data.choices.forEach(item => {
       const el = document.createElement('span');
       el.className = 'choice-item';
       el.textContent = item.label;
-      el.addEventListener('click', () => {
+      el.addEventListener('click', (event) => {
         event.stopPropagation();
         if (item.action) {
-          item.action(); // ← urlじゃなくて関数を実行したい場合
+          item.action();
         } else {
           window.open(item.url, '_blank');
         }
@@ -243,6 +434,41 @@
       }
     });
   });
+  // 表情変化の関数
+function setFace({ temEyeL, temEyeR, temWink, gumiEyeL, gumiEyeR, gumiEyeLIris, gumiEyeRIris, gumiMouth, moveIris }) {
+    // 一旦、全表情パーツのis-active・is-moveを外す
+    document.querySelectorAll('[id*="temEye"],[id*="gumiEye"],[id*="gumiMouth"]')
+      .forEach(el => el.classList.remove('is-active'));
+    document.querySelectorAll('[id*="gumiEyeLIris"],[id*="gumiEyeRIris"]')
+      .forEach(el => el.classList.remove('is-move'));
+    document.querySelectorAll('[id*="temWink"]')
+      .forEach(el => el.classList.remove('is-wink'));
+
+    // 指定された表情のパーツにis-activeを付ける(空文字・undefinedは除外)
+    const activeIds = [temEyeL, temEyeR, temWink, gumiEyeL, gumiEyeR, gumiMouth].filter(id => id);
+    if (activeIds.length > 0) {
+      document.querySelectorAll(activeIds.map(id => `#${id}`).join(', '))
+        .forEach(el => el.classList.add('is-active'));
+    }
+
+    // 指定された表情のパーツにis-moveを付ける
+    const irisIds = [gumiEyeLIris, gumiEyeRIris].filter(id => id);
+    if (irisIds.length > 0) {
+      document.querySelectorAll(irisIds.map(id => `#${id}`).join(', '))
+        .forEach(el => {
+          el.classList.add('is-active');
+          if (moveIris) {
+            el.classList.add(moveIris);
+          }
+        });
+    }
+
+    // 指定された表情のパーツにis-winkを付ける
+    if (temWink) {
+      document.querySelectorAll(`#${temWink}`)
+        .forEach(el => el.classList.add('is-wink'));
+    }
+  }
   // ポップアップの表示・非表示
   function openPopup() {
     const popupBg = document.querySelector('.popupBg');
