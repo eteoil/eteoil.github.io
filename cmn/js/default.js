@@ -251,10 +251,16 @@
   let currentRawMessage = '';
 
   function displayMessage(rawText, useTyping = true) {
+  // セリフだけを文字列で渡された時は、表情はいじらずテキストだけ差し替える
+  const hasFace = (typeof rawText === 'object' && rawText !== null);
+  const text = hasFace ? rawText.text : rawText;
+
   currentRawMessage = rawText;
-  setFace(rawText);
+  if (hasFace) {
+    setFace(rawText);
+  }
   const msgText = document.getElementById('messageText');
-  const processed = stripSpaceForWide(rawText.text);
+  const processed = stripSpaceForWide(text);
 
     if (useTyping) {
       typeText(msgText, processed, 60);
