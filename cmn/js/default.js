@@ -185,14 +185,18 @@
   }
   // メッセージボックスをクリックしたら、コマ送り中でも即・次のセリフへ
   document.querySelector('.message-box').addEventListener('click', () => {
-    switch (document.getElementById('messageText') !==null) {
-      case document.getElementById('translateInput') !== null && document.getElementById('translateInput').classList !== 'hidden':
-        return; // 翻訳入力中はクリックを無視する
-      case document.getElementById('choiceList').getElementsByTagName('span') !== null || undefined:
-        return; // 選択肢表示時はクリックを無視する
-      default:
-        advanceIdleMessage();
+    const translateInput = document.getElementById('translateInput');
+    const choiceList = document.getElementById('choiceList');
+
+    // 翻訳入力中はクリックを無視する
+    if (translateInput && !translateInput.classList.contains('hidden')) {
+      return;
     }
+    // 選択肢表示時はクリックを無視する
+    if (choiceList && choiceList.children.length > 0) {
+      return;
+    }
+    advanceIdleMessage();
   });
   // 1文字ずつコマ送りで表示する関数
   function typeText(el, text, speed = 60) {
