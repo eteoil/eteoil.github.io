@@ -91,11 +91,11 @@
       moveIris: '',
       gumiMouth: '' },
     { text: '「本棚とか机とか置いてみたけど、だいぶヒトが住んでる感出たね〜」',
-      temEyeL: 'tem EyeLOpen',
-      temEyeR: 'tem EyeROpen',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
       temWink: '',
-      gumiEyeL: 'gumi EyeLOpen',
-      gumiEyeR: 'gumi EyeROpen',
+      gumiEyeL: 'gumiEyeLOpen',
+      gumiEyeR: 'gumiEyeROpen',
       gumiEyeLIris: 'gumiEyeLIrisOpen',
       gumiEyeRIris: 'gumiEyeRIrisOpen',
       moveIris: '',
@@ -440,8 +440,8 @@ function setFace({ temEyeL, temEyeR, temWink, gumiEyeL, gumiEyeR, gumiEyeLIris, 
     document.querySelectorAll('[id*="temEye"],[id*="gumiEye"],[id*="gumiMouth"]')
       .forEach(el => el.classList.remove('is-active'));
     document.querySelectorAll('[id*="gumiEyeLIris"],[id*="gumiEyeRIris"]')
-      .forEach(el => el.classList.remove('is-move'));
-    document.querySelectorAll('[id*="temWink"]')
+      .forEach(el => el.classList.remove('is-moveLeft', 'is-moveTop'));
+    document.querySelectorAll('#temEyeLClose, #temEyeRClose')
       .forEach(el => el.classList.remove('is-wink'));
 
     // 指定された表情のパーツにis-activeを付ける(空文字・undefinedは除外)
