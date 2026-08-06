@@ -495,3 +495,6 @@ function setFace({ temEyeL, temEyeR, temWink, gumiEyeL, gumiEyeR, gumiEyeLIris, 
       }
     });
   }
+  // 表情パーツは初期状態だと全部display:noneなので、最初の表情を先に当てておく
+  // (オープニングのスライド中にキャラの目や口が欠けて見えるのを防ぐ)
+  setFace(idleMessages[0]);
