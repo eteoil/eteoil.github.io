@@ -91,8 +91,8 @@
       moveIris: '',
       gumiMouth: '' },
     { text: '「本棚とか机とか置いてみたけど、だいぶヒトが住んでる感出たね〜」',
-      temEyeL: 'tem EyeLOpen',
-      temEyeR: 'tem EyeROpen',
+      temEyeL: 'temEyeLOpen',
+      temEyeR: 'temEyeROpen',
       temWink: '',
       gumiEyeL: 'gumiEyeLOpen',
       gumiEyeR: 'gumiEyeROpen',
@@ -165,7 +165,9 @@
     document.getElementById('choiceList').innerHTML = '';
   }
   // 次のセリフに進める共通処理(タイマーからもクリックからも呼ぶ)
-  const idleLoopEnd = 13;
+  // 最後のセリフまで回してから1に戻る(0は起動時だけ表示する挨拶なので戻り先に含めない)
+  // 直接13等と書くとセリフを足した時に末尾が表示されなくなるので、件数から求める
+  const idleLoopEnd = idleMessages.length - 1;
   function advanceIdleMessage() {
     if (idleIndex >= idleLoopEnd) {
       idleIndex = 1;
@@ -185,14 +187,18 @@
   }
   // メッセージボックスをクリックしたら、コマ送り中でも即・次のセリフへ
   document.querySelector('.message-box').addEventListener('click', () => {
-    switch (document.getElementById('messageText') !==null) {
-      case document.getElementById('translateInput') !== null && document.getElementById('translateInput').classList !== 'hidden':
-        return; // 翻訳入力中はクリックを無視する
-      case document.getElementById('choiceList').getElementsByTagName('span') !== null || undefined:
-        return; // 選択肢表示時はクリックを無視する
-      default:
-        advanceIdleMessage();
+    const translateInput = document.getElementById('translateInput');
+    const choiceList = document.getElementById('choiceList');
+
+    // 翻訳入力中はクリックを無視する
+    if (translateInput && !translateInput.classList.contains('hidden')) {
+      return;
     }
+    // 選択肢表示時はクリックを無視する
+    if (choiceList && choiceList.children.length > 0) {
+      return;
+    }
+    advanceIdleMessage();
   });
   // 1文字ずつコマ送りで表示する関数
   function typeText(el, text, speed = 60) {
@@ -247,10 +253,16 @@
   let currentRawMessage = '';
 
   function displayMessage(rawText, useTyping = true) {
+  // セリフだけを文字列で渡された時は、表情はいじらずテキストだけ差し替える
+  const hasFace = (typeof rawText === 'object' && rawText !== null);
+  const text = hasFace ? rawText.text : rawText;
+
   currentRawMessage = rawText;
-  setFace(rawText);
+  if (hasFace) {
+    setFace(rawText);
+  }
   const msgText = document.getElementById('messageText');
-  const processed = stripSpaceForWide(rawText.text);
+  const processed = stripSpaceForWide(text);
 
     if (useTyping) {
       typeText(msgText, processed, 60);
@@ -338,7 +350,6 @@
     choices: [
       { label: '専門書を手にとる',          url: 'https://www.foriio.com/eteoil' },
       { label: 'シリーズ物の本を手にとる',          url: 'https://note.com/eteoil/n/nac6506e4dcbe' },
-      { label: 'マンガを手にとる',          url: 'https://amzn.asia/d/0atWws8h' },
     ]
   };
 
@@ -356,7 +367,6 @@
     choices: [
       { label: '雑記部分を読む',          url: 'https://note.com/eteoil/m/med63620e2cb8' },
       { label: 'らくがきを眺める',          url: 'https://eteoil.fanbox.cc/' },
-      { label: '古い記述を読む',          url: 'https://eteoil.blogspot.com/' },
     ]
   };
 
@@ -442,8 +452,8 @@ function setFace({ temEyeL, temEyeR, temWink, gumiEyeL, gumiEyeR, gumiEyeLIris, 
     document.querySelectorAll('[id*="temEye"],[id*="gumiEye"],[id*="gumiMouth"]')
       .forEach(el => el.classList.remove('is-active'));
     document.querySelectorAll('[id*="gumiEyeLIris"],[id*="gumiEyeRIris"]')
-      .forEach(el => el.classList.remove('is-move'));
-    document.querySelectorAll('[id*="temWink"]')
+      .forEach(el => el.classList.remove('is-moveLeft', 'is-moveTop'));
+    document.querySelectorAll('#temEyeLClose, #temEyeRClose')
       .forEach(el => el.classList.remove('is-wink'));
 
     // 指定された表情のパーツにis-activeを付ける(空文字・undefinedは除外)
@@ -471,25 +481,27 @@ function setFace({ temEyeL, temEyeR, temWink, gumiEyeL, gumiEyeR, gumiEyeLIris, 
         .forEach(el => el.classList.add('is-wink'));
     }
   }
-  // ポップアップの表示・非表示
+  // ポップアップの表示・非表示(表示状態はopen/closeクラスだけで管理する)
   function openPopup() {
     const popupBg = document.querySelector('.popupBg');
-    popupBg.style.display = ''
-    if (popupBg.classList.contains("close")) {
-      popupBg.classList.remove("close");
-    }
-    popupBg.classList.add("open");
+    popupBg.classList.remove('close');
+    popupBg.classList.add('open');
   }
   function closePopup() {
     const popupBg = document.querySelector('.popupBg');
-    if (popupBg.classList.contains("open")) {
-      popupBg.classList.remove("open");
-    }
-    popupBg.classList.add("close");
-    // フェードアウトのアニメーションが終わったら、完全に非表示にする
-    popupBg.addEventListener('animationend', () => {
-      if (popupBg.classList.contains('close')) {
-        popupBg.style.display = 'none';
-      }
-    }, { once: true });
+    popupBg.classList.remove('open');
+    popupBg.classList.add('close');
   }
+  // フェードアウトが終わったらcloseを外して、.popupBgのdisplay:noneに戻す
+  // (closePopupの中で登録するとクリックの度にリスナーが増えてしまうので、ここで一度だけ登録する)
+  const popupBgEl = document.querySelector('.popupBg');
+  if (popupBgEl) {
+    popupBgEl.addEventListener('animationend', (event) => {
+      if (event.animationName === 'fadeOut' && popupBgEl.classList.contains('close')) {
+        popupBgEl.classList.remove('close');
+      }
+    });
+  }
+  // 表情パーツは初期状態だと全部display:noneなので、最初の表情を先に当てておく
+  // (オープニングのスライド中にキャラの目や口が欠けて見えるのを防ぐ)
+  setFace(idleMessages[0]);

@@ -465,8 +465,6 @@ body {
   top: 0;
   width: 100%;
   height: 100vh;
-  /* ✕ボタンがはみ出しても画面外に切れないように余白を取る */
-  padding: 24px;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
   justify-content: center;
@@ -474,34 +472,26 @@ body {
 }
 .popupContent {
   margin: 0 auto;
-  /* ✕ボタンの位置決めの基準 */
   position: relative;
 }
-.popupCloseBtn {
+/* カレンダー右上の×ボタン */
+.popupClose {
   position: absolute;
-  top: -14px;
-  right: -14px;
-  z-index: 1;
-  width: 32px;
-  height: 32px;
+  right: 0;
+  bottom: calc(100% + 8px);
+  width: 34px;
+  height: 34px;
   padding: 0;
   border: solid 2px #603939;
   border-radius: 50%;
-  background-color: #fff;
+  background-color: #ffffff;
   color: #603939;
-  font-size: 0.9rem;
+  font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
-.popupCloseBtn:hover,
-.popupCloseBtn:focus-visible {
-  background-color: #c61626;
-  border-color: #c61626;
-  color: #fff;
+.popupClose:hover {
+  background-color: #f1e7e7;
 }
 .popupContent.popupCalendar {
   width: 100%;
@@ -514,6 +504,8 @@ body {
   animation: fadeIn 0.5s ease-in forwards;
 }
 .popupBg.close {
+  /* display指定が無いと.popupBgのdisplay:noneに戻ってしまい、
+     display:noneの要素はアニメーションしないのでフェードアウトが見えなくなる */
   display: flex;
   animation: fadeOut 0.5s ease-out forwards;
 }
