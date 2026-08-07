@@ -472,6 +472,26 @@ body {
 }
 .popupContent {
   margin: 0 auto;
+  position: relative;
+}
+/* カレンダー右上の×ボタン */
+.popupClose {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: solid 2px #603939;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #603939;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.popupClose:hover {
+  background-color: #f1e7e7;
 }
 .popupContent.popupCalendar {
   width: 100%;
@@ -484,6 +504,9 @@ body {
   animation: fadeIn 0.5s ease-in forwards;
 }
 .popupBg.close {
+  /* display指定が無いと.popupBgのdisplay:noneに戻ってしまい、
+     display:noneの要素はアニメーションしないのでフェードアウトが見えなくなる */
+  display: flex;
   animation: fadeOut 0.5s ease-out forwards;
 }
 @media screen and (min-width: 440px) {

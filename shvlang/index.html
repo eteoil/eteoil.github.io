@@ -424,15 +424,15 @@
         <rect x="13" y="33" width="1" height="1"/>
       </g>
       <g id="temEyeLHalf" class="temColor1">
-        <polygon points="28,31 23,31 23,35 24,35 24,36 27,36 27,35 28,35" class="temColor0"></polygon>
-        <polygon points="24,30 24,34 25,34 25,35 27,35 27,34 28,34 28,30"></polygon>
+        <polygon points="13,31 8,31 8,35 9,35 9,36 12,36 12,35 13,35" class="temColor0"></polygon>
+        <polygon points="9,30 9,34 10,34 10,35 12,35 12,34 13,34 13,30"></polygon>
         <g>
-          <rect x="22" y="30" width="1" height="5"></rect>
-          <rect x="24" y="36" width="3" height="1"></rect>
-          <rect x="28" y="30" width="1" height="5"></rect>
-          <rect x="23" y="29" width="5" height="1"></rect>
-          <rect x="27" y="35" width="1" height="1"></rect>
-          <rect x="23" y="35" width="1" height="1"></rect>
+          <rect x="7" y="30" width="1" height="5"></rect>
+          <rect x="9" y="36" width="3" height="1"></rect>
+          <rect x="13" y="30" width="1" height="5"></rect>
+          <rect x="8" y="29" width="5" height="1"></rect>
+          <rect x="12" y="35" width="1" height="1"></rect>
+          <rect x="8" y="35" width="1" height="1"></rect>
         </g>
       </g>
       <g id="temEyeLOpen">
@@ -1661,11 +1661,12 @@
 
   </div>
     <!-- カレンダー -->
-  <button class="popupBg closeBtn" onclick="closePopup()">
+  <div class="popupBg" onclick="closePopup()">
       <div class="popupContent popupCalendar">
+        <button type="button" class="popupClose" aria-label="カレンダーを閉じる" onclick="event.stopPropagation(); closePopup();">×</button>
 <iframe src="https://calendar.google.com/calendar/embed?src=visual.toy.box%40gmail.com&amp;wkst=2&amp;bgcolor=%23ffffff&amp;ctz=Asia%2FTokyo&amp;src=dmlzdWFsLnRveS5ib3hAZ21haWwuY29t&amp;color=%23711616&amp;showNav=1&amp;showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" style="border: 0;width:100%;min-height:95%;border:solid 2px #603939;border-radius: 3px;" frameborder="0" scrolling="no"></iframe>
       </div>
-    </button>
+    </div>
   <script>
   // ==============================
   // 翻訳ロジック

@@ -479,25 +479,24 @@ function setFace({ temEyeL, temEyeR, temWink, gumiEyeL, gumiEyeR, gumiEyeLIris, 
         .forEach(el => el.classList.add('is-wink'));
     }
   }
-  // ポップアップの表示・非表示
+  // ポップアップの表示・非表示(表示状態はopen/closeクラスだけで管理する)
   function openPopup() {
     const popupBg = document.querySelector('.popupBg');
-    popupBg.style.display = ''
-    if (popupBg.classList.contains("close")) {
-      popupBg.classList.remove("close");
-    }
-    popupBg.classList.add("open");
+    popupBg.classList.remove('close');
+    popupBg.classList.add('open');
   }
   function closePopup() {
     const popupBg = document.querySelector('.popupBg');
-    if (popupBg.classList.contains("open")) {
-      popupBg.classList.remove("open");
-    }
-    popupBg.classList.add("close");
-    // フェードアウトのアニメーションが終わったら、完全に非表示にする
-    document.querySelector('.popupBg').addEventListener('animationend', (event) => {
-      if (popupBg.classList.contains('close')) {
-        popupBg.style.display = 'none';
+    popupBg.classList.remove('open');
+    popupBg.classList.add('close');
+  }
+  // フェードアウトが終わったらcloseを外して、.popupBgのdisplay:noneに戻す
+  // (closePopupの中で登録するとクリックの度にリスナーが増えてしまうので、ここで一度だけ登録する)
+  const popupBgEl = document.querySelector('.popupBg');
+  if (popupBgEl) {
+    popupBgEl.addEventListener('animationend', (event) => {
+      if (event.animationName === 'fadeOut' && popupBgEl.classList.contains('close')) {
+        popupBgEl.classList.remove('close');
       }
     });
   }
