@@ -165,7 +165,9 @@
     document.getElementById('choiceList').innerHTML = '';
   }
   // 次のセリフに進める共通処理(タイマーからもクリックからも呼ぶ)
-  const idleLoopEnd = 13;
+  // 最後のセリフまで回してから1に戻る(0は起動時だけ表示する挨拶なので戻り先に含めない)
+  // 直接13等と書くとセリフを足した時に末尾が表示されなくなるので、件数から求める
+  const idleLoopEnd = idleMessages.length - 1;
   function advanceIdleMessage() {
     if (idleIndex >= idleLoopEnd) {
       idleIndex = 1;
