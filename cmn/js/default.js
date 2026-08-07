@@ -350,6 +350,7 @@
     choices: [
       { label: '専門書を手にとる',          url: 'https://www.foriio.com/eteoil' },
       { label: 'シリーズ物の本を手にとる',          url: 'https://note.com/eteoil/n/nac6506e4dcbe' },
+      { label: 'マンガを手にとる',          url: 'https://amzn.asia/d/0atWws8h' },
     ]
   };
 
@@ -367,6 +368,7 @@
     choices: [
       { label: '雑記部分を読む',          url: 'https://note.com/eteoil/m/med63620e2cb8' },
       { label: 'らくがきを眺める',          url: 'https://eteoil.fanbox.cc/' },
+      { label: '古い記述を読む',          url: 'https://eteoil.blogspot.com/' },
     ]
   };
 
