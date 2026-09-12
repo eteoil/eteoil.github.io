@@ -1,0 +1,13 @@
+# vue-router の history mode 用。
+# 実在するファイル・ディレクトリはそのまま返し、それ以外は index.html に渡す。
+# これが無いと /shvlang を直接開いた時や404ページでサーバの404が出てしまう。
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    RewriteRule ^ index.html [L]
+</IfModule>
