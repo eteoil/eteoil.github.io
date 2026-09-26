@@ -3,6 +3,29 @@
 
 <head>
     <meta charset="UTF-8">
+
+    <!--
+      アセットを相対パスで読むので、その基準をここで決める。
+      サイトの置き場所はサーバによって違う(XREAの共有SSLなら /eteoil.s325.xrea.com/、
+      IPFSなら /ipfs/<CID>/ の下)ので、開いているURLから逆算する。
+      ページのパスを取り除いた残りが置き場所。末尾のスラッシュの有無も吸収できる。
+      アセットを読み込むタグより先に置くこと
+    -->
+    <script>
+      (function () {
+        var routes = ['/shvlang']; // src/router と合わせること
+        var path = window.location.pathname;
+        var dir = path.replace(/[^/]*$/, '');
+        for (var i = 0; i < routes.length; i += 1) {
+          var at = path.indexOf(routes[i] + '/');
+          if (at < 0 && path.slice(-routes[i].length) === routes[i]) at = path.length - routes[i].length;
+          if (at >= 0) { dir = path.slice(0, at + 1); break; }
+        }
+        var tag = document.createElement('base');
+        tag.setAttribute('href', dir);
+        document.head.appendChild(tag);
+      }());
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
     <title>Visual Toy-Box.</title>
@@ -11,18 +34,18 @@
     <link rel="canonical" href="https://v-tb.net/">
 
     <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#b75252">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="./favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="./favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#b75252">
+    <link rel="manifest" href="./site.webmanifest">
 
     <!-- Google Fonts: M PLUS Rounded 1c -->
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/index-DKOTJQ8b.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-CTT10fdO.css">
+  <script type="module" crossorigin src="./assets/index-XAGdDIjZ.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CTT10fdO.css">
 </head>
 
 <body>
