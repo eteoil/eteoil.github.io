@@ -5,6 +5,10 @@
     RewriteEngine On
     RewriteBase /
 
+    # SSL証明書の発行・更新で使われる場所。ここを index.html に渡してしまうと
+    # 確認が通らず証明書が出ないので、書き換えの対象から先に外す
+    RewriteRule ^\.well-known/ - [L]
+
     RewriteCond %{REQUEST_FILENAME} -f [OR]
     RewriteCond %{REQUEST_FILENAME} -d
     RewriteRule ^ - [L]
