@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_レイヤー_2" data-name="レイヤー 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 14">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #545c9e;
+      }
+
+      .cls-2 {
+        fill: #768abf;
+      }
+
+      .cls-3 {
+        fill: #eacaa6;
+      }
+
+      .cls-4 {
+        fill: #8a6a89;
+      }
+
+      .cls-5 {
+        fill: #c195bf;
+      }
+
+      .cls-6 {
+        fill: #85badf;
+      }
+
+      .cls-7 {
+        fill: #e9e6f3;
+      }
+    </style>
+  </defs>
+  <g id="list">
+    <rect class="cls-3" y="10" width="16" height="4"/>
+    <g>
+      <rect class="cls-2" x="2" y="4" width="11" height="2"/>
+      <rect class="cls-7" x="4" y="1" width="8" height="4"/>
+      <rect class="cls-1" x="1" y="6" width="13" height="7"/>
+      <rect class="cls-1" x="2" y="3" width="1" height="1"/>
+      <rect class="cls-1" x="12" y="3" width="1" height="1"/>
+      <g>
+        <rect class="cls-5" x="3" y="2" width="1" height="3"/>
+        <rect class="cls-5" x="11" y="2" width="1" height="3"/>
+        <polygon class="cls-5" points="4 0 4 2 5 2 5 1 12 1 12 2 13 2 13 0 4 0"/>
+        <rect class="cls-4" x="5" y="3" width="2" height="1"/>
+        <rect class="cls-4" x="8" y="3" width="2" height="1"/>
+      </g>
+      <rect class="cls-6" x="1" y="6" width="13" height="7"/>
+      <path class="cls-1" d="M14,5v-1h-1v1H2v-1h-1v1H0v8h15V5h-1ZM14,12H1v-6h13v6Z"/>
+    </g>
+  </g>
+</svg>
